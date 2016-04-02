@@ -1,0 +1,1218 @@
+\documentclass[11 pt]{article}
+\usepackage{amssymb,amsmath, amsthm, graphicx, subfig, listings, rotating,cite,color}
+%\usepackage{natbib}
+%formatting that is good for editing (it double spaces)
+\renewcommand{\baselinestretch}{1.4}
+\textwidth 6in \textheight 9in \hoffset -0.30in \topmargin -0.45in
+\interfootnotelinepenalty=10000 %keeps footnotes on a single page
+
+%comment out
+%----------------------
+\newcommand{\commentout}[1]{}
+%--------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%PART I. GENERAL COMMANDS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I. NUMBERING AND ENVIRONMENTS FOR THEOREMS, PROPOSITIONS, LEMMAS, AND EQUATIONS
+
+%A. Actual Theorems
+\newtheorem{ass}{Assumption}
+\newtheorem*{ass*}{Assumption}
+\newtheorem{prop}{Proposition}
+\newtheorem{fact}{Fact}
+\newtheorem{lem}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{con}{Conjecture}
+\newtheorem{defn}{Definition} %use \textbf{} to set it off
+\newtheorem{rem}{Remark}
+\newtheorem{ques}{\textcolor{red}{Question}}
+\newtheorem{com}{\textcolor{red}{Comment}}
+\newtheorem{todo}{\textcolor{red}{To Do}}
+
+%B. Special Referencing
+
+%B1. Built in ones
+
+%1. \eqref (equations, in standard package)
+ %%2. in commath:
+%a)\thmref
+%b)\exref (example)
+%c) \defnref
+%d) \lemref
+%e)\propref
+%f)\remref
+%g)\assref
+%h)\colref - corollary
+%also figures, section, appendix
+
+%B2. I try to define
+%1. fact KEY need dollar signs for it work $\factref{fact:varW}$
+\newcommand{\factref}[1]{ \text{Fact~\ref{#1}} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Bold Greek
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\etab{\mbox{\boldmath $\eta$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\btau{\mbox{\boldmath $\tau$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\bGamma{\mbox{\boldmath $\Gamma$}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bOmega{\mbox{\boldmath $\Omega$}}
+\def\bPsi{\mbox{\boldmath $U$}}
+\def\bpsi{\mbox{\boldmath $\mu$}}
+\def\bXi{\mbox{\boldmath $\Xi$}}
+\def\bxi{\mbox{\boldmath $\xi$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\bTheta{\mbox{\boldmath $\Theta$}}
+\def\etaz{\mbox{\boldmath $\eta$}}
+
+\def\boldX{\mbox{\boldmath $X$}}
+\def\boldx{\mbox{\boldmath $X$}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% III. SHORTCUTS
+
+%A. Greek symbols
+\newcommand{\be}{\begin{eqnarray*}}
+\newcommand{\ee}{\end{eqnarray*}}
+\newcommand{\ff}{\infty}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\ep}{\epsilon}
+\newcommand{\ga}{\gamma}
+\newcommand{\al}{\alpha}
+\newcommand{\la}{\lambda}
+\newcommand{\si}{\sigma}
+\renewcommand{\th}{\theta}
+\newcommand{\Epos}{E_{\theta|\boldX}}
+\newcommand{\Ej}{E_{\theta,\boldX}}
+%B. Other Math Symbols
+
+%1. transpose, you want a consistent use, bc you could use t,T or \prime
+\def\tran{\mathop{ t }}
+
+%C. Commands
+\newcommand{\xra}[1]{\mathop{ \xrightarrow{#1} }}
+
+%D. Fences puts items in the correct fence sizes (parantheses, brackets, etc..)
+% (get rid of? look at commath package?)
+%fp = fence parentheses
+\newcommand{\fp}[1]{ \mathop{ \left( #1 \right) } }
+%fb = fence brackets
+\newcommand{\fb}[1]{ \mathop{ \left[ #1 \right] } }
+%fbr = fence braces meaning \{
+\newcommand{\fbr}[1]{ \mathop{ \left\{ #1 \right\} } }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%V. Other Commands
+
+ %command that is called by \Title{Text} and this centers it.
+\newcommand{\Title}[1]{\begin{center}{\Large \bf #1} \end{center}}
+
+
+\newcommand{\boldXn}{\mbox{\boldmath $X_n$}}
+\newcommand{\boldYn}{\mbox{\boldmath $Y_n$}}
+%\newcommand{\boldUn}{\mbox{\boldmath $U_n$}}
+\newcommand{\boldUn}{\mbox{\boldmath $\xi_n$}}
+\newcommand{\boldXnt}{\mbox{\boldmath $X_{n,T_n}$}}
+\newcommand{\boldYnt}{\mbox{\boldmath $Y_{n,T_n}$}}
+%\newcommand{\boldUnt}{\mbox{\boldmath $U_{n,T_n}$}}
+\newcommand{\boldUnt}{\mbox{\boldmath $\xi_{n,T_n}$}}
+\newcommand{\boldXnpt}{\mbox{\boldmath $X_{n+T_n}$}}
+\newcommand{\boldYnpt}{\mbox{\boldmath $Y_{n+T_n}$}}
+%\newcommand{\boldUnpt}{\mbox{\boldmath $U_{n+T_n}$}}
+\newcommand{\boldUnpt}{\mbox{\boldmath $\xi_{n,T_n}$}}
+
+\newcommand{\Dnt}{D_{n,T_n}}
+
+\newcommand{\hell}{\text{HD}}
+\newcommand{\dhell}{\dot{\hell}}
+\newcommand{\ddhell}{\ddot{\hell}}
+
+\newcommand{\gs}{\frac{xg(x)}{\mu}}
+\newcommand{\fnt}{\tilde{f}_n(x)}
+
+\newcommand{\mhde}{\hat{\th}_n}
+\newcommand{\dddsth}{\dddot{s}_{\theta}}
+\newcommand{\ddsth}{\ddot{s}_{\theta}}
+\newcommand{\dsth}{\dot{s}_{\theta}}
+\newcommand{\sth}{s_{\th}}
+
+\newcommand{\fthnx}{f_{\th}}
+
+\newcommand{\lth}{l_{\th}}
+\newcommand{\dlth}{\dot{l}_{\th}}
+\newcommand{\ddlth}{\ddot{l}_{\th}}
+\newcommand{\dddlth}{\dddot{l}_{\th}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%END PART I
+
+
+
+
+
+
+\begin{document}
+\Title{Technical Report MHDE}
+\Title{Davis and Hanlon}
+
+\renewcommand{\th}{\theta}
+
+\section{Introduction}
+
+\newcommand{\fth}{f_{\th}(x)}
+\newcommand{\fapp}{f_{\th,\text{app}}(x)}
+We use the sampling scheme introduced here \cite{mm}, in which simple random sampling of brood sizes in an explosive branching process is conducted at each generation. In particular, a sample of size $r_n \leq Z_n$ is taken. Sampling multiple objects from the same family is possible but decreasingly likely as $n$ grows. The event $D_n$ signifies that the $n$th generation's sampling did not sample the same family more than once. Under regularity conditions given in A1, $P(D_n) \rightarrow 1$.
+
+This framework uses a power series offspring distribution given by
+\[
+\fth = \frac{a_x\th^x}{A(\th)}
+\]
+where $a_x \geq 0$ and $A(\th) = \sum_{x=1}^{\infty}a_x\th^x$. The support of this distribution is $x=1,2,...$. This density has $f_{\th}(0)=0$. This family of distributions is dominated by $m$, the counting measure (see Fact \ref{fact:dom}), which is a needed condition for the proof of asymptotic normality that appears later. We use $||f||_p = \left( \int |f|^{p} dm \right )^{1/p}$. Also a compact parameter space $\Theta \subset \mathbb{R}$ is used such that $\th \in \Theta$.
+
+Let $Z_n$ be the number of objects at each generation of the tree. Furthermore, denote the sampled brood sizes of the objects in the $n$th generation by $\boldYn = (Y^{(1)}_n,...,Y^{(r_n)}_n)$ where $Y^{(j)}_n$ is the brood size of the $j$th sampled object. Similarly, denote the number of offspring by $\boldUn = (\xi^{(1)}_n,...,\xi^{(r_n)}_n)$. Frequently, we will use $\xi \sim \xi_n^{(k)}$ for arbitrary $k$ and $n$ because the $\xi_n^{(k)}$ are assumed to follow the power series offspring distribution identically and independently.
+
+Let $T_n$ be the number of generations ahead of the $n$th generation that are collected into a single data vector $\boldYnt = (Y_n,...,Y_{n + T_n})$, which is composed of $R_n = r_n + ... + r_{n + T_n}$ elements (each one being a brood size). Define $\Dnt$ and $\boldUnpt$ accordingly. It happens, under assumption A, given below, that $P(\Dnt) \rightarrow 1$ also. 
+
+Let $\boldX = (X_1,X_2,...)$ be an i.i.d. sample such that $X_{j}$ is from $\gs$, where $g$ is the true offspring distribution. Motivation for setting the distribution of $\boldX$ to be $\gs$ will be explained later. Let $\boldXn = (X_1,...,X_{r_n})$. Define $\boldXnt$ accordingly. Let $c_{n,T_n}(t_{n,T_n})$ be the characteristic function of $\boldYnt$ and $c(t_{n,T_n})$ be the characteristic function of $\boldXnt$. Under assumption A, given below, $|c_{n,T_n}(t_{n,T_n}) - c(t_{n,T_n})| \rightarrow 0$ (\cite{mm}).
+
+Some comments on notation follow. A dot, for example as in $\dhell (\fth,g )$, is used to indicate the derivative with respect to $\th$. Two such dots, as in $\ddhell(\fth,g)$, is used to indicate the second derivative with respect to $\th$.
+
+The sampled brood sizes $\boldYnt$ come from a finite population under sampling without replacement; so the sampling distribution is approximated by the corresponding infinite population sampling distribution of $\boldXnt$, which can be expressed more easily. The approximate distribution is given in the following definition:
+
+\begin{defn}[Sampling Distribution] The sampled brood sizes $\boldYnt$ are approximated by $\boldXnt$, where it is assumed that each of the $X_i$ follows
+\[
+\gs
+\]
+independently and identically. Here, $g$ is the offspring distribution of the underlying branching process with support $\fbr{1,2,...}$.
+\end{defn}
+
+The Minimum Hellinger Distance estimator is defined as the minimizer in $\th$ of $\hell (\fth,f_n) = 2 ||\fth^{1/2}-f_n^{1/2}||_2^2$ where $f_n$ is the empiricle density estimator. Here, $\th \in \Theta$, the parameter space. 
+
+
+\section{Assumptions}
+There are two types of regularity conditions needed to obtain the asymptotic normality of the Minimum Hellinger Distance Estimator (MHDE). The first, which has to do with the sample sizes' growth rate relative to the growth rate of the tree, guarantee that the distribution of the sampled brood sizes $\boldYnt$ are approximated ``well-enough''--which will be made precise later--by the approximate distribution $\boldXnt$, where the components of $\boldXnt$ follow $\gs$. The second class of regularity assumptions guarantees that the MHDE $\mhde$ viewed as a function of $\boldXnt$ attains asymptotic normality. 
+
+
+\begin{ass*}[A] The assumption on the underlying branching process and sample size follows: for some $0 \leq \alpha < -\log E(\xi^{-1}) / \log \mu$, we require that
+\[
+\sum_{j = n}^{n + T_n} \frac{r_n^2}{\mu^{\alpha j}} \xra{n \rightarrow \infty} 0
+\]
+\end{ass*}
+
+\begin{rem}
+In the case there $T_n = 0$ for all $n$, that is, only one generation at a time is sampled, assumption A reduces to
+\[
+r_n^2 / \mu^n \xra{n \rightarrow \infty} 0.
+\]
+For a detailed discussion of this assumption and assumption A, see \cite{mm}.
+\end{rem}
+
+\begin{ass*}[B] The assumptions on the model $\fth$ are enumerated in the following:
+\begin{itemize}
+  \item{(B1)} This is the main model assumption: 
+\[
+\sup_{\th \in \Theta} \th \limsup_{k \rightarrow \infty} a_k^{1/k} \leq 1
+\]
+%   \item{(B2)} Supposed the observed brood sizes take the unique values $y_1,...,y_{n'}$. Define $N(x)$ as the number of the $y_i$ equal to $x$. Also let $\xi \sim f_{\th}$. Assume that there exists a $\th \in \Theta$ solving
+% \[
+% 0 = \sum_{i=1}^{n'} (y_i - E_{\th}\xi) \sqrt{a_{y_i}\th^{y_i}\frac{N(y_i)}{y_i}}
+% \]
+% \begin{proof}[Details]
+% It can be shown that 
+% \[
+% \sum_{i=1}^{n'} (y_i - E_{\th}\xi) \sqrt{a_{y_i}\th^{y_i}\frac{N(y_i)}{y_i}} \propto  H'(\th,F_n),
+% \]
+% where $H'$ is the first derivative with respect to $\th$ of the Hellinger distance. Let $s_{\th} = \sqrt{f_{\th}}$ and $l_{\th} = \frac{d}{d\th} \log f_{\th} = (\frac{x}{\th} - \frac{A'(\th)}{A(\th)}) = \frac{1}{\th}(x - E_{\th}\xi)$, where the last equality follows from $E_{\th}\xi = \frac{\th A'(\th)}{A(\th)}$. Let $s'_{\th}$ be the derivative with respect to $\th$ of $s_{\th}$. It can be shown that $s'_{\th} = \frac{1}{2}l_{\th} s_{\th}$. From \cite{simp}, we have that 
+% \begin{align*}
+% H'(\th,F_n) &\propto \int s'_{\th} \sqrt{f_n} dm \\
+% &\propto \sum_{x=1}^{\infty} (\frac{x}{\th}- \frac{A'(\th)}{A(\th)}) \sqrt{f_{\th}(x)f_{n}(x)} \\
+% &\propto \sum_{x=1}^{\infty} (x - E_{\th}\xi) \sqrt{a_x\th^x\frac{N(x)}{x}} \\
+% &= \sum_{i=1}^{n'} (y_i - E_{\th}\xi) \sqrt{a_{y_i}\th^{y_i}\frac{N(y_i)}{y_i}} 
+% \end{align*}
+% \end{proof}
+% \begin{rem} Assumption B2 requires that there exists a $\th$ in the parameter space such that the derivative of the Hellinger Distance between the power series density and the kernel density is equal to 0. The Lemma \ref{lem:suffzero}, which follows shortly, provides sufficient conditions this assumption.
+% \end{rem}
+  \item{(B2)} Suppose the true $\th$ is in the interior of the parameter space such that
+\[
+\dhell (g,\fth) = 0
+\]
+
+  \item{(B3)} Suppose that $\ddhell(g,\fth) \neq 0$ for the true $\th$. 
+\end{itemize}
+\end{ass*}
+
+% \begin{rem} Assumption B1 guarantees that the underlying power series distribution is well-behaved. There are other sufficient conditions than the one mentioned above. For example, if the parameter space is contained in the interval $(0,1)$, the condition can be reduced to $\limsup_{k \rightarrow \infty} a_k^{1/k} \leq 1$. In the case of the shifted geometric distribution with $p(x) = \th^x\frac{1 - \th}{\th}$ where $x = 1,2,...$ and $\th \in (0,1)$, it happens that $a_x=1$ for all $x$, so the condition is satisfied. In the case of the Poisson distribution, $a_x \propto 1/x!$. By Stirling's approximation, we can write
+% \[
+% \frac{1}{(x!)^{1/x}} \sim \frac{e}{(\sqrt{2 \pi x})^{1/x}x} \xra{x \rightarrow \infty} 0
+% \]
+% so that the Poisson distribution satisfies the condition for any fixed $\th$ in $(0,\infty)$. 
+% \end{rem}
+
+% \begin{lem}
+% \label{lem:suffzero}
+% If at least 1 of the $y_i > 1$, say, $y_j$, with $a_j > 0$, and if for all $\th$ in the parameter space, the variance of the power series distribution is strictly greater than 0, then
+% \[
+% 0 = L := \sum_{i=1}^{n'}(y_i - E_{\th}\xi)\sqrt{a_{y_i} \th^{y_i}\frac{N(y_i)}{y_i}} \propto \dhell(f_n,\fth)
+% \]
+% has a solution in $\th$. Recall here that $n'$ is the number of unique values $y_1,...,y_{n'}$ taken by the observed brood sizes, and the number of such observations at each value $y_i$ is given by $N(y_i)$.
+% \begin{proof}
+% % Assume $E_{\th} \xi$ as a function of $\th$ has range of $(1,\infty)$
+% First, note that $E_{\th}\xi = \frac{\th A'(\th)}{A(\th)}$ by properties of power series distributions; so 
+% \[
+% \nabla E_{\th}\xi = \frac{A(\th)(A'(\th) + \th A''(\th)) - \th(A'(\th))^2}{A^2(\th)}
+% \]
+% The derivative changes sign if and only if for some $\th$,
+% \begin{equation} \label{dcond}
+% \frac{A'(\th)}{A(\th)} + \th \frac{A''(\th)}{A(\th)} = \th \left (\frac{A'(\th)}{A(\th)} \right )^2. 
+% \end{equation}
+% Now the variance of the power series distribution is derived. Write
+% \[
+% E_{\th}\xi(\xi-1) = \frac{1}{A(\th)} \sum_1 x(x-1)a_x\th^x = \frac{\th^2}{A(\th)}A''(\th)
+% \]
+% which allows the variance to be written as
+% \begin{equation} \label{powerseriesvariance}
+% V_{\th}(X) = E_{\th}X(X-1) + E_{\th}X - E^2_{\th}X = \frac{\th^2 A''(\th)}{A(\th)} + \frac{\th A'(\th)}{A(\th)} - \frac{\th^2 (A'(\th))^2}{A^2(\th)}
+% \end{equation}
+% Plugging \eqref{dcond} into \eqref{powerseriesvariance}, we have that $V_{\th}\xi = 0$, which violates the assumption about the nonzero variance of the power series distribution. This indicates that $E_{\th}\xi$ as a function of $\th$ is one-to-one and monotone in the parameter $\th$. Assume without loss of generality that $E_{\th}\xi$ is monotone increasing in the parameter $\th$. Then, for $\th$ sufficiently large, 
+% \[
+% y_i - E_{\th}\xi < 0 \quad \forall i \in \fbr{1,...,n'}
+% \]
+% which implies that $L < 0$. On the other hand, let $b_i = \sqrt{a_{y_i} \th^{y_i}\frac{N(y_i)}{y_i}}$. Note that by assumption, $b_j > 0$. Fix $\epsilon >0$. Let $I  = \fbr{1,...,n'} \setminus j$. Write, by the support of the data on $1,2,...$
+% \[
+% L \geq \sum_{i \in I} (1 - E_{\th}\xi)b_i + (y_j - E_{\th}\xi)b_j.
+% \]
+% Now, fix $B$ such that $\th < B$ implies $(1-E_{\th}\xi)b_i > -\epsilon$ for all $i$. Then
+% \begin{align*}
+% \sum_{i \in I} (1 - E_{\th}\xi)b_i + (y_j - E_{\th}\xi)b_j &> - (n' - 1)\epsilon + (y_j -1+1- E_{\th}\xi)b_j  \\
+% &> - n'\epsilon + (y_j -1)b_j 
+% \end{align*}
+% We need the last line to be greater than 0, which can always be achieved for $\epsilon$ sufficiently small because $(y_j -1)b_j>0$. But $L > - n'\epsilon + (y_j -1)b_j >0$. $L$ is also continuous in $\th$, so it follows there exists a $\th$ solving $0=L$.
+% \end{proof}
+% \end{lem}
+
+
+
+\section{Results}
+
+\begin{thm} 
+\label{thm:an}
+Suppose that $h$ is any function such that the subsequent expectation is defined. Then
+\[
+\left | E \fbr{ h(\boldYnt) 1(D_{n,T_n}) } - E \fbr{ h(\boldXnt) } \right | \leq E \fbr{ \prod_{j=n}^{n+T_n} \prod_{k=1}^{r_j} \xi_{j-1}^{(k)} \left | {{Z_{j-1}}\choose{r_j}} / {{Z_j}\choose{r_j}} - \mu^{-R_n} \right | \left | h(\mbox{\boldmath $\xi_{n-1,T_n}$}) \right| }.
+\]
+If assumption A holds, then
+\[
+E \fbr{ \prod_{j=n}^{n+T_n} \prod_{k=1}^{r_j} \xi_{j-1}^{(k)} \left | {{Z_{j-1}}\choose{r_j}} / {{Z_j}\choose{r_j}} - \mu^{-R_n} \right | } \xra{n \rightarrow \infty} 0
+\]
+
+\begin{rem} Later, for an appropriately normalized function $V_n$ of $\hat{\th}(\boldXnt)$, the MHDE under the approximate distribution, and for $Z \sim N(0,1)$, 
+\[
+V_n(\hat{\th}(\boldXnt)) \xra{d} Z
+\]
+is obtained. This, in conjunction with Theorem \ref{thm:an}, will yield
+\[
+V_n(\hat{\th}(\boldYnt)) \xra{d} Z
+\]
+\end{rem}
+
+\begin{proof}
+This theorem follows directly from Lemmas 3 and 4 in \cite{mm}.
+\end{proof}
+\end{thm}
+
+\begin{lem}
+\label{lem:consistencyintermediate}
+Assume Assumption B1. Then 
+\[
+\sum_{k=1}^{\infty} \sqrt{a_k}\th^{k/2} < \infty \quad \forall \th \in \Theta
+\]
+\begin{proof}
+Fix any $\th$ in the interior of the parameter space. Then by hypothesis, $\th \limsup_{k \rightarrow \infty} a_k^{1/k} < 1$. There thus exists $x \in (\th \limsup_{k \rightarrow \infty} a_k^{1/k},1)$ so that for some $K$, $k > K$ implies
+\begin{align*}
+\th a_k^{1/k} < x &< 1\\
+\Rightarrow \sqrt{\th} (\sqrt{a_k})^{1/k} < \sqrt{x} &< 1 \\
+\Rightarrow (\sqrt{\th})^k \sqrt{a_k} < (\sqrt{x})^k &< 1.
+\end{align*}
+It then follows that the left side is geometrically summable, which is equivalent to the conclusion.
+\end{proof}
+\end{lem}
+
+\begin{lem}
+\label{lem:moments}
+Assume Assumption B1. Then $A^{(j)}(\th) < \infty$ for all $\th \in \Theta$. Furthermore, the moments $EX^j < \infty$ for all $j \in \mathbb{N}$. 
+\begin{proof}
+By hypothesis, we have for the power series $A(\th)$ that $\Theta$ is a subset of the radius of convergence. By standard power series arguments (see, for example, Theorem 7.30 in \cite{wade2010an}), the derivatives $A^{(j)}(\th)$ are also power series with radius of convergence of at least $\Theta$. 
+Now, consider
+\[
+A^{'}(\th) = \sum_{1}^{\infty} x a_x \th^{x-1} = \frac{A(\th)}{\th}EX.
+\]
+Since $A'$ and $A$ are finite, it follows that $EX$ is finite. Next, fix any $j > 1$  and assume that the moments from $1,...,j-1$ are finite. Write
+\[
+A^{(j)}(\th) = \sum_1^{\infty} \frac{x!}{(x-j)!}a_x\th^{x-j} = \frac{1}{\th^j} \sum_{h=1}^{j} d_h \sum_1^{\infty} x^ja_x\th^{x}=  \frac{A(\th)}{\th^j} \fb{\sum_{h=1}^{j} d_h EX^h},
+\]
+for some $d_h$ nonzero integers. The left side is finite; the first $j-1$ terms of the sum on the right side are also finite. Therefore $EX^j$ must be finite. It is thus true by induction that all of the moments are finite. 
+\end{proof}
+\end{lem}
+
+\newcommand{\of}{f_{\theta}(x)}
+\newcommand{\kerna}{f_n(x)}
+\newcommand{\oft}{f^{\frac{1}{2}}_{\theta}(x)}
+\newcommand{\kernat}{f^{\frac{1}{2}}_n(x)}
+\newcommand{\ofX}{f_{\theta}(X)}
+\newcommand{\kernaX}{f_n(X)}
+\newcommand{\oftX}{f^{\frac{1}{2}}_{\theta}(X)}
+\newcommand{\kernatX}{f^{\frac{1}{2}}_n(X)}
+\newcommand{\ofapp}{f_{\theta,\text{app}}(x)}
+
+To correct for the bias introduced by the sampling scheme of brood sizes, the following kernel density is used:
+
+\begin{defn}[Kernel Density] Let the kernel density function be defined in the following way:
+\[
+f_n(x) = \frac{c_n}{R_n} \sum_{i=n}^{n + T_n}\sum_{j=1}^{r_i} \frac{1(Y_i^{(j)}=x)}{x},
+\]
+where $c_n$ is a normalization constant so that $||f_n||_1 =1$; that is,
+\[
+c_n^{-1} = \frac{1}{R_n} \sum_{i=n}^{n + T_n}\sum_{j=1}^{r_i} \left(Y_i^{(j)} \right)^{-1}.
+\]
+\end{defn}
+
+
+
+
+
+\begin{lem}[Consistency of $c_n$]
+\label{lem:consistency}
+% Assume A3. If the offspring distribution is $\of$, then $c_n \xra{\text{a.s.}} \mu = E_{\theta}\xi$ if $\xi \sim f_{\theta}(x)$. Also, 
+% \[
+% \frac{1}{R_n} \sum_{i=n}^{n + T_n}\sum_{j=1}^{r_i}1(Y_i^{(j)}=x) \xra{\text{a.s.}} \ofapp
+% \]
+Assume A. Then $c_n \xra{\text{p}} \mu = E_{\theta}\xi$ if $\xi \sim g$.
+\begin{proof}
+First approximate $c_n = c_n(\boldYnt)$ with $\tilde{c}_n = c_n(\boldXnt)$. Consider 
+\begin{align*}
+E|X_1^{-1}| &=EX_1^{-1} \\
+ &=\sum_{x=1}^{\infty} x^{-1}\ofapp \\
+ &=\mu^{-1} \sum_{x=1}^{\infty} \of \\
+ &=\mu^{-1} \\
+&< \infty
+\end{align*}
+Therefore $\sum_{i=1}^{R_n} X_i^{-1}/R_n \xra{\text{a.s.}} \mu^{-1}$ by the strong law of large numbers; so by the continuous mapping theorem $\tilde{c}_n \xra{\text{a.s.}} \mu$. It is sufficient to show $P(|c_n^{-1} - \mu^{-1}| > \varepsilon) \rightarrow \infty$. Using Chebyshev's rule, the fact that $c_n^{-1} \leq 1$ and $\mu^{-1} \leq 1$, and $P(\Dnt^c) \rightarrow 0$ (by A2), we have
+\begin{equation} \label{probbound}
+P(|c_n^{-1} - \mu^{-1}| > \varepsilon) \leq \varepsilon^{-1} \fbr{ E|c_n^{-1} - \mu^{-1}|1_{\Dnt} + 2o(1)}.
+\end{equation}
+Then by Theorem~\ref{thm:an},
+\begin{align*}
+E|c_n^{-1} - \mu^{-1}|1_{\Dnt} &= E|\tilde{c}_n^{-1} - \mu^{-1}| + \bigg | E|c_n^{-1} - \mu^{-1}|1_{\Dnt} - E|\tilde{c}_n^{-1} - \mu^{-1}| \bigg| \\
+&= E|\tilde{c}_n^{-1} - \mu^{-1}|1_{\Dnt} + o(1).
+\end{align*}
+The left term on the last line converges to zero by the dominated convergence theorem. Thus, the right-hand side of \eqref{probbound} converges to zero, implying $c_n \xra{p} \mu$ by the continuous mapping theorem.
+
+
+% A similar argument shows that 
+% \[
+% \frac{1}{R_n} \sum_{i=n}^{n + T_n}\sum_{j=1}^{r_i}1(Y_i^{(j)}=x) \xra{\text{a.s.}} \ofapp.
+% \]
+\end{proof}
+\end{lem}
+
+Another technical lemma is required.
+
+\begin{lem} Suppose the data $X_1,...,X_{R_n}$ are i.i.d. from $\gs$. Then
+\[
+\sum_{x=1}^{\infty} \bigg|d_n(x) - \gs \bigg| \xra{a.s.} 0
+\]
+where $d_n(x)$ is the empiricle density of the $X_i$.
+\label{lem:loneas}
+\begin{proof}
+The strong law of large numbers implies $d_n(x) \xra{a.s.} g(x)$ as $n \rightarrow \infty$. Then
+
+\begin{align*}
+\sum_x \bigg|d_n(x) - \gs \bigg| &= \sum_x \bigg |d_n(x) - \gs \bigg |1_{\text{supp } g} \\
+&= \sum_x \bigg |\frac{d_n(x)}{\gs} - 1 \bigg | \gs 1_{\text{supp } g} \\
+&= E \fbr{\bigg |\frac{d_n(x)}{\gs} - 1 \bigg | 1_{\text{supp } g} }\\
+&\leq E \frac{d_n(x)}{\gs}1_{\text{supp } g}  + 1 \\
+&\leq 2.
+\end{align*}
+Note that $\bigg |\frac{d_n(x)}{\gs} - 1 \bigg |1_{\text{supp } g} \leq (\frac{d_n}{\gs} + 1)1_{\text{supp } g}$ almost surely; thus the dominated convergence theorem implies the result.
+%Devroye and Gyorfi, 1985, pg. 10
+\end{proof}
+\end{lem}
+
+
+We can now prove the consistency of $\mhde$.
+
+\begin{thm}
+\label{thm:consistency}
+Assume A2. Then 
+\[
+\hell(f_n,g) = ||f_n^{1/2}(x) - g^{1/2}(x)||_2^2 \xra{p} 0
+\]
+and as a consequence $\hat{\th}_n \xra{p} \th$.
+\begin{proof}
+By the boundedness of the Hellinger distance and $P(\Dnt) \rightarrow 1$ (A2), we have
+\[
+E(\hell(f_n,g)) = E(\hell(f_n,g)1_{D_n}) + o(1).
+\]
+Then, with the subscript $\boldXnt$ indicating expectation against the distribution $\gs$,
+\begin{align*}
+E(\hell(f_n,g)1_{D_n}) &= E_{\boldXnt}(\hell(f_n,g)) + \bigg|E(\hell(f_n,g)1_{D_n})  - E_{\boldXnt}(\hell(f_n,g)) \bigg| \\
+&= E_{\boldXnt}(\hell(f_n,g)) + o(1)
+\end{align*}
+where the last term goes to zero by Theorem~\ref{thm:an}. The dominated convergence theorem then implies
+\begin{align*}
+\lim_{n \rightarrow \infty} E_{\boldXnt}(\hell(f_n,g)) &=  E_{\boldXnt}( \lim_{n \rightarrow \infty} \hell(f_n,g))
+\end{align*}
+The term in the interior of the expectation on the right-hand side now deals with observations that come from the limiting distribution $\gs$. By standard arguments,
+\begin{align*}
+\lim_{n \rightarrow \infty} \hell(f_n,g) &= \lim_{n \rightarrow \infty} \sum_{x=1}^{\infty} (f_n^{1/2}(x) - g^{1/2}(x))^2 \\
+&\leq \lim_{n \rightarrow \infty} \sum_{x=1}^{\infty} |f_n(x) - g(x)| \\
+&\leq \lim_{n \rightarrow \infty} c_n \sum_{x=1}^{\infty} \frac{1}{x}|d_n(x) - \gs| \\
+&\leq \lim_{n \rightarrow \infty} c_n \sum_{x=1}^{\infty} |d_n(x) - \gs|,
+\end{align*}
+for $n$ sufficiently large. But $c_n = O_p(1)$ by Lemma~\ref{lem:consistency} and $\sum_{x=1}^{\infty} |d_n(x) - \gs| = o(1)$ by Lemma~\ref{lem:loneas}. Therefore $\hell(f_n,g) \xra{p} 0$. Then, for any subsequence $n_k$ of $\hat{\th}_{n_k}$, there exists a further subsequence such that $\hell(f_{n_{k_s}},g) \xra{a.s.} 0$. On this subsequence, Theorem 1 from \cite{beran1977minimum} implies that $\hat{\th}_{n_{k_s}} \xra{a.s.} \th$. But since this further subsequence exists, $\hat{\th} \xra{p} \th$. The application of the cited theorem requires that $\fth$ be identifiable and continuous in $\th$, both of which are true by the power series family. Furthermore, if $g$ is not in the model family $\fth$, then $\th$ is understood to be the minimizer in $t$ of $\hell(f_t,g)$.
+
+% Let $m$ denote the counting measure on the positive integers. Then note that
+% \begin{align*}
+% \lim_{n \rightarrow \infty} ||f^{1/2}_n(x) - f^{1/2}_{\theta}(x)||_2^2 &= 2 - 2 \sum_{x}^{\infty} \kernat \oft = 0 \Leftrightarrow 1 =  \lim_{n \rightarrow \infty} \sum_{x}^{\infty} \kernat \oft
+% \end{align*}
+% Furthermore, by Lemma \ref{lem:consistency}, we have that $c_n \xra{\text{a.s.}} \mu$ and $\frac{1}{R_n} \sum_{i=n}^{n + T_n}\sum_{j=1}^{r_i}1(Y_i^{(j)}=x) \xra{\text{a.s.}} \ofapp$, which means they hold for all $\omega \in A$, some set such that $P(A)=1$. Then it is sufficient to show
+% \[
+% P \left ( 1 =  \lim_{n \rightarrow \infty} \sum_{x}^{\infty} \kernat \oft \cap A\right) = 1.
+% \]
+% Take any $\omega \in A$. Note that {\color{red} $f_n(x) = f_n(x,\omega)$}. Taking the integral with respect to the counting measure, 
+% \[
+% \lim_{n \rightarrow \infty} \sum_{x}^{\infty} \kernat \oft = \lim_{n \rightarrow \infty} \int \kernat \oft dm.
+% \]
+% The goal is now to dominate $\kernat \oft$:
+% \[
+% \kernat \oft \leq \sqrt{c_n(\omega)\of} \xra{\text{a.s.}} \sqrt{\mu \of}.
+% \]
+% It follows that $\int \sqrt{c_n\of} dm \xra{n \rightarrow \infty} \int \sqrt{\mu \of} dm$ because $\int \oft dm = \frac{1}{\sqrt{A(\th)}} \sum_{k=1}^{\infty} \sqrt{a_k\th^k} < \infty$. Then, by the dominated convergence theorem, it follows that
+% {\color{red}
+% \[
+% \lim_{n \rightarrow \infty} \int \kernat \oft dm =  \int \lim_{n \rightarrow \infty}\kernat \oft dm.
+% \]
+% By continuity, 
+% \[
+% \lim_{n \rightarrow \infty}\kernat \oft = \left ( \lim_{n \rightarrow \infty} \kerna \of \right )^{1/2}.
+% \]
+% By the lemma and the choice of $\omega$, 
+% \[
+% \lim_{n \rightarrow \infty} f_n(x, \omega) \xra{n \rightarrow \infty} \frac{\mu}{x}\ofapp = \of
+% \]
+% so that
+% \[
+% \lim_{n \rightarrow \infty} \int \kernat \oft dm  = \int \of dm = 1
+% \]
+% }
+% which was the claim. 
+\end{proof}
+\end{thm}
+
+Now, we turn our attention to proving the asymptotic normality of $\hat{\th}(\boldXnt)$. The following lemmas and assumptions serve to set up the needed hypothesis for the asymptotic normality. 
+
+\begin{lem}
+\label{lem:l2}
+Assume Assumption B1 and let $\sth = \sqrt{f_{\th}}$. Then $\dsth,\ddsth \in L^2$.
+\begin{proof}
+It can be shown that $s_{\th} = \frac{1}{2} l_{\th} s_{\th}$ where $l_{\th} = \nabla \log \fthnx =  \frac{1}{\th}(x - E_{\th}X)$. Then
+\[
+||\dsth||_2^2 = \frac{1}{\th^2}\sum_{x=1}^{\infty}(x - E_{\th}X)^2 f_{\th}(x) = \frac{1}{\th^2}\text{Var}_{\th}(X) < \infty
+\]
+because the moments are all finite by Lemma \ref{lem:moments}. Similarly
+\[
+||\ddsth||_2^2 \propto E_{\th}(l_{\th}^2 + 2\dlth)^2 = E((X/\th - E_{\th}X/\th)^2 - 2 (A(\th)A''(\th) - (A'(\th)^2)/A^2(\th)))^2 < \infty
+\]
+because the moments are all finite.
+\end{proof}
+\end{lem}
+
+\begin{lem}
+\label{lem:l2diff1}
+Assume Assumption B1. Suppose that $\th$ is in the interior of the parameter space. Let $\sth = \sqrt{f_{\th}}$. Then
+\[
+||s_{t}  - s_{\th} - \dsth(t-\th) ||_2 = o(|t - \th|).
+\]
+%\newcommand{\sth}{s_{\th}}
+%\newcommand{\fth}{f_{\th}}
+%\newcommand{\lth}{l_{\th}}
+\newcommand{\dth}{\frac{d}{d \th}}
+\newcommand{\ddth}{\frac{d^2}{d \th^2}}
+\begin{proof}
+Let $\lth = \nabla \log \fth$. Then $\dsth = \frac{1}{2} \frac{\nabla \fth}{\sqrt{\fth}} = \frac{1}{2} \lth \sth$. By the product rule,
+\begin{align*}
+\ddsth &= \frac{1}{2}(\sth \dlth + \lth \dsth ) \\
+&= \frac{1}{2}(\sth \dlth + \frac{1}{2}\lth^2 \sth ) \\
+&= \frac{\sth}{4}(2 \dlth + \lth^2) .
+\end{align*}
+\newcommand{\thl}{\theta_L}
+\newcommand{\thu}{\theta_U}
+\newcommand{\xix}{\xi_x}
+\newcommand{\sxix}{s_{\xix}}
+\newcommand{\lxix}{l_{\xix}}
+\newcommand{\fxix}{f_{\xix}}
+\newcommand{\dxix}{\frac{d}{d \xix}}
+Next, since $\th$ is in the interior of the parameter space, there exists $r>0$ such that $B:=B_r(\th)$ the open ball of radius $r$ is contained in the parameter space. Because the parameter space is one-dimensional, we can rewrite $B = (\th - r, \th + r)$. Let $\thl = \th - r$ and $\thu = \th + r$.
+
+Because $s_t(x) - \sth(x) - \dsth(x0 (t - \th)$ is a first order Taylor expansion in the parameter space, if $t \in B$, we can find $\xi_x \in B$  such that $s_t(x) - \sth(x) - \dsth(x) (t - \th) = \frac{\ddot{s}_{\xix}(x)}{2}(t - \th)^2$ for every $x$ in $1,2,3,...$. Then
+\begin{align*}
+||s_t(x) - \sth(x) - \dsth(x) (t - \th)||_2^2 &= ||\frac{\ddot{s}_{\xix}(x)}{2}(t - \th)^2||_2^2 \\
+&= \frac{(t-\th)^4}{4} || \ddot{s}_{\xix}(x)||_2^2 \\
+&= \frac{(t-\th)^4}{4} \sum_{x=1}^{\infty} (\ddot{s}_{\xix} (x))^2 \\
+&= \frac{(t-\th)^4}{4} \sum_{x=1}^{\infty} (\frac{\sxix}{4}(2 \dot{l}_{\xix} + \lxix^2)^2 \\
+&= \frac{(t-\th)^4}{64} \sum_{x=1}^{\infty} (2 \dot{l}_{\xix} + \lxix^2)^2\fxix \\
+\end{align*}
+If the sum is finite, then the proof is complete. Each term in the sum depends on $x$, but the $\xix \in B$, which is used to derive bounds on the terms in the sum.
+
+First, recall that $\fth = \th^x a_x / A(\th)$ for $x = 1,2,3,...$, where $a_x \geq 0$ and $A(\th) := \sum_x a_x\th^x < \infty$. It follows immediately that $A(\th)$ is increasing in $\th$. Furthermore, 
+\begin{align*}
+ A'(\th) &= \sum_{x=1} xa_x \th^{x-1} \th \\
+&= \sum_{x=0} (x+1) a_{x+1} \th^x
+\end{align*}
+is also increasing in $\th$. Next,
+\begin{align*}
+A''(\th) &= \dth \sum_{x=0} (x+1) a_{x+1} \th^x \\
+&= \sum_{x=0} x(x+1)a_{x+1}\th^{x-1} \\
+&= \sum_{x=1} x(x+1)a_{x+1}\th^{x-1} \\
+&= \sum_{x=0} (x+1)(x+2)a_{x+2}\th^{x} 
+\end{align*}
+is increasing in $\th$, too. Now, for any $x$,
+\begin{align*}
+\fxix(x) &= \frac{\xix^x a_{\xix}}{A(\xix)} \\
+&\leq \frac{\thu^x a_{x}}{A(\thl)} \\
+&\leq \frac{A(\thu)}{A(\thl)}f_{\thu}(x) \\
+&< \infty
+\end{align*}
+Because $B$ is an open set in the interior of the parameter space, $A(\thu) < \infty$.  Next,
+\begin{align*}
+\lxix  &= \dxix \log \fxix \\
+&= \dxix [\log a_x  + x\log \xix- \log A(\xix) ] \\
+&= \frac{x}{\xix} - \frac{A'(\xix)}{A(\xix)} \\
+&\leq \frac{x}{\thu} - \frac{A'(\thu)}{A(\thu)} \\
+&< \infty
+\end{align*}
+We can assume that the upper bound of $\lxix$ is enough because the lower bound is similar. Denote the bound $B_1(x) := \frac{x}{\thu} - \frac{A'(\thu)}{A(\thu)}$. Additionally,
+\begin{align*}
+\dot{l}_{\xix} (x) &= \frac{-x}{\xix^2} - \frac{A(\xix)A''(\xix) - (A'(\xix))^2}{A^2(\xix)} \\
+&= \frac{-x}{\xix^2} - \frac{A''(\xix)}{A(\xix)} + \left (\frac{A'(\xix)}{A(\xix)} \right )^2 \\
+&\leq \frac{-x}{\thl^2} - \frac{A''(\thu)}{A(\thu)} + \left (\frac{A'(\thu)}{A(\thl)} \right )^2 \\
+&< \infty,
+\end{align*}
+where again the upper bound is enough. Denote this bound by $B_2(x)$. Recall from above that 
+
+\begin{align*}
+||s_t(x) - \sth(x) - \dsth(x) (t - \th)||_2^2 &= \frac{(t-\th)^4}{64} \sum_{x=1}^{\infty} (2  \dot{l}_{\xix} + \lxix^2)^2\fxix \\
+&\leq \frac{(t-\th)^4}{64} \frac{A(\thu)}{A(\thl)}\sum_{x=1}^{\infty} (2 B_2(x) + B_1(x)^2)^2f_{\thu} \\
+&= \frac{(t-\th)^4}{64} \frac{A(\thu)}{A(\thl)}E_{\thu} (2 B_2(X) + B_1(X)^2)^2 \\
+&\leq (t-\th)^4 M_{\th}
+\end{align*}
+The interior to the expectation is a polynomial that depends on $X$ up to degree 4, so linearity of expectation and the fact that all the moments are finite (Lemma~\ref{lem:moments}) implies the expected value is finite. Finally,
+\begin{align*}
+\lim_{t \rightarrow \th} \frac{||s_t(x) - \sth(x) - \dsth(x) (t - \th)||_2}{|t - \th|} &\leq \lim_{t \rightarrow \th} \frac{(t-\th)^2 \sqrt{M_{\th}}}{|t - \th|} \\
+&\leq  \lim_{t \rightarrow \th} \sqrt{M_{\th}}|t - \th|\\
+&= 0
+\end{align*}
+\end{proof}
+\end{lem}
+
+
+
+\begin{lem}
+\label{lem:l2diff2}
+Assume Assumption B1. Suppose that $\th$ is in the interior of the parameter space. Then
+\[
+||\dot{s}_{t}  - \dsth - \ddsth(t-\th) ||_2 = o(|t - \th|).
+\]
+\begin{proof}
+%\newcommand{\sth}{s_{\th}}
+%\newcommand{\fth}{f_{\th}}
+%\newcommand{\lth}{l_{\th}}
+\newcommand{\dth}{\frac{d}{d \th}}
+\newcommand{\ddth}{\frac{d^2}{d \th^2}}
+\newcommand{\thl}{\theta_L}
+\newcommand{\thu}{\theta_U}
+\newcommand{\xix}{\xi_x}
+\newcommand{\sxix}{s_{\xix}}
+\newcommand{\lxix}{l_{\xix}}
+\newcommand{\fxix}{f_{\xix}}
+\newcommand{\dxix}{\frac{d}{d \xix}}
+% \newcommand{\dlth}{\dot{l}_{\th}}
+% \newcommand{\ddlth}{\ddot{l}_{\th}}
+% \newcommand{\dddlth}{\dddot{l}_{\th}}
+
+From the proof of Theorem 1, we can derive the form of $\dddsth$ and $\ddlth$:
+\begin{align*}
+\dddsth &= \frac{1}{2}\dsth(\lth^2 + 2 \dlth) + \frac{1}{2}\sth (2\lth \dlth + 2\ddlth) \\
+&= \frac{1}{4} \sth \lth (\lth^2 + 2 \dlth) + \frac{1}{2}\sth ( 2 \lth \lth' + 2 \ddlth) \\
+&=  \sth ( \frac{1}{4} \lth^3 + \frac{3}{2} \lth \dlth + \ddlth) \\
+&\text{and} \\
+\ddlth &= 2 \frac{x}{\th^3} + 2 \frac{A'(\th)A''(\th)}{A^2(\th)} - 2 \left ( \frac{A'(\th)}{A(\th)}\right )^3 - \frac{A'''(\th)}{A(\th)} + \frac{A'(\th)A''(\th)}{A^2(\th)} \\
+&\leq 2 \frac{x}{\thl^3} + 2 \frac{A'(\thu)A''(\thu)}{A^2(\thl)} - 2 \left ( \frac{A'(\thl)}{A(\thu)}\right )^3 - \frac{A'''(\thl)}{A(\thu)} + \frac{A'(\thu)A''(\thu)}{A^2(\thl)}
+\end{align*}
+Because $\dot{s}_t(x) - \dsth(x) - \ddsth(x) (t - \th)$ is a first order Taylor expansion in the parameter space, if $t \in B$, we can find $\xi_x \in B$  such that $\dot{s}_t(x) - \dsth(x) - \ddsth(x) (t - \th) = \frac{\dddot{s}_{\xix}(x)}{2}(t - \th)^2$ for every $x$ in $1,2,3,...$. Following the argument of the previous theorem, if $||\dddot{s}_{\xix}(x)||_2^2 < \infty$ then the proof is complete:
+\begin{align*}
+||\dddot{s}_{\xix}(x)||_2^2 &= \sum_{x=1}^{\infty} (\sth ( \frac{1}{4} \lth^3 + \frac{3}{2} \lth \dot{l}_{\xix} + \ddot{l}_{\xix}))^2 \\
+&=  \sum_{x=1}^{\infty} ( \frac{1}{4} \lxix^3 + \frac{3}{2} \lxix \lxix' + \lxix'')^2 \fxix \\
+&\leq \frac{A(\thu)}{A(\thl)} \sum_{x=1}^{\infty} ( B_3 ) f_{\thu} \\
+&= \frac{A(\thu)}{A(\thl)} E ( B_3 ) \\
+&< \infty
+\end{align*}
+wehre $B_3$ is the upper bound of $ (\frac{1}{4} \lxix^3 + \frac{3}{2} \lxix \dot{l}_{\xix} + \dot{l}_{\xix})^2$ which depends on $x$ up to order 6 as well as $\thu$ and $\thl$. It is also linear in $x^i$ for $i=0,...,6$.
+\end{proof}
+\end{lem}
+
+\begin{lem}
+\label{lem:L1}
+Assume Assumption B1. Then $\dsth \in L^1$. 
+\begin{proof}
+\begin{align*}
+||\dsth||_1 &\propto \sum_{x=1}^{\infty} |l_{\th}| s_{\th} \\
+&= \sum_{x=1}^{\infty} |\frac{x}{\th} - \frac{A'(\th)}{A(\th)}| s_{\th} \\
+&\leq \sum_{x=1}^{\infty} \frac{x}{\th}s_{\th} + \frac{A'(\th)}{A(\th)}\sum_{x=1}^{\infty}s_{\th}  \\
+&< \infty
+\end{align*}
+because the right term is finite by Lemma \ref{lem:consistencyintermediate} and the left term is finite because it is proportional to the derivative of the power series in the right term, which is finite by properties of power series. 
+\end{proof}
+\end{lem}
+
+
+
+
+\begin{lem}{For any $x$ such that $0 < g(x) < 1$,
+\[
+n^{1/4} \left ( \sqrt{\fnt} - \sqrt{g(x)} \right) \xra{a.s.} 0
+\]
+if $X_1,...,X_n \sim \gs$
+\label{lem:one}
+}
+\begin{proof}
+The proof follows page 52 of \cite{disparity}. We have for
+\[
+d_n(x) := \frac{1}{R_n} \sum_{i = 1}^{R_n} 1(X_i = x)
+\]
+and
+\[
+\fnt := \frac{\mu}{R_n} \sum_{i = 1}^{R_n} \frac{1(X_i = x)}{x}
+\]
+that
+\[
+R_n^{1/4} \left ( d_n(x) - \gs  \right) \xra{a.s.} 0,
+\]
+if $X_1,...,X_{R_n}$ are i.i.d. from $\gs$. By the definition of $\fnt$,
+\[
+\fnt = \frac{\mu}{x} d_n(x).
+\]
+Then
+\[
+\left ( \frac{\mu}{x} \right ) R_n^{1/4} \left ( d_n(x) - \gs  \right) = R_n^{1/4} \left ( \fnt - g(x)  \right).
+\]
+Since the left-hand side goes to 0 almost surely, so does the right. Now, consider the Taylor expansion
+\[
+\sqrt{\fnt} - \sqrt{g(x)} = \frac{1}{2\sqrt{g(x)}} (\fnt - g(x)) + o(|\fnt - g(x)|)
+\]
+Multiplying both sides by $R_n^{1/4}$ completes the proof.
+\end{proof}
+\end{lem}
+
+
+\begin{lem}
+Let $X_1,...,X_{R_n}$ be i.i.d. from $\gs$. Also assume B1 and B2 hold. Then
+\[
+-\dhell(f_n,\fthnx) = (1 + o_p(1))\fp{ R_n^{-1} \fb{2 \mu \sum_{i=1}^{R_n} \frac{1}{\sqrt{g(X_i)}} \dot{s}_{\theta}(X_i)  X_i^{-1}}} + o_p(R_n^{-1/2})
+\]
+\label{lem:two}
+\begin{proof}
+This proof follows page 53 of \cite{disparity}. First, note that
+\[
+\dhell(f_n,\fthnx) = -4 \sum_{x=1}^{\infty} \sqrt{f_n(x)} \dsth(x) = -4 \sqrt{ \frac{\mu}{c_n}} \sum_{x=1}^{\infty} \sqrt{\fnt} \dsth(x) .
+\]
+The term $\sqrt{\frac{\mu}{c_n}} = 1 + o_p(1)$ by Lemma~\ref{lem:consistency}. Now, let
+\begin{align*}
+H_n &= 4 \sum_{x=1}^{\infty} \sqrt{\fnt} \dsth(x) - n^{-1} \fb{2 \mu \sum_{i=1}^{R_n} \frac{1}{\sqrt{ g(X_i)}} \dot{s}_{\theta}(X_i)  X_i^{-1}} \\
+&= 4 \sum_{x=1}^{\infty} \sqrt{\fnt} \dsth(x) - 2 \sum_{x=1}^{\infty} \frac{1}{\sqrt{g(x)}} \dot{s}_{\theta}(x)  \fnt 
+\end{align*}
+Given that
+\[
+\left ( \sqrt{\fnt} - \sqrt{g(x)} \right ) ^2 = \fnt + g(x) - 2\sqrt{\fnt g(x)},
+\]
+and
+\[
+0 = -4 \sum_{x=1}^{\infty} \sqrt{g(x)} \dsth(x),
+\]
+we can write
+\[
+H_n = -2 \sum_{x=1}^{\infty} \frac{1}{\sqrt{g(x)}} \dsth(x) \left ( \sqrt{\fnt} - \sqrt{g(x)} \right )^2.
+\]
+The proof is complete if $\sqrt{R_n}H_n = o_p(1)$ and will demonstrate this claim by applying Markov's inequality, as in 
+\[
+P(|\sqrt{R_n}H_n| > \varepsilon) \leq \varepsilon^{-1} E|\sqrt{R_n}H_n|,
+\]
+and showing $E|\sqrt{R_n}H_n| \xra{n \rightarrow \infty} 0$. Clearly,
+\begin{equation}
+E|\sqrt{R_n}H_n| \leq  \sum_{x=1}^{\infty} \frac{1}{\sqrt{g(x)}} |\dsth(x)| \sqrt{R_n} E \left ( \sqrt{\fnt} - \sqrt{g(x)} \right )^2. \label{eq:bound}
+\end{equation}
+We need to dominate the sum on $x$ in order to pass the limit on $n$ into the sum, after which we will show that in summand limits to 0 in $n$. Since 
+\begin{equation}
+(\sqrt{a} - \sqrt{b})^2 < |a-b|, \label{eq:boundtwo}
+\end{equation}
+we have that
+\begin{align*}
+\sqrt{n} E \left ( \sqrt{\fnt} - \sqrt{g(x)} \right )^2 &\leq \sqrt{n} E|\fnt - g(x)| \\
+&\leq \sqrt{R_n} \sqrt{E(\fnt - g(x))^2} \\
+&\leq \sqrt{R_n} \left (\frac{\mu}{x} \right ) \sqrt{E \left (d_n(x) - \gs \right )^2 }\\
+&=  \left (\frac{\mu}{x} \right ) \sqrt{\left( \gs \right) \left( 1-\gs \right) } \\
+&\leq  \sqrt{\mu  g(x)  \left( 1-\gs \right) } \\
+&\leq \sqrt{\mu  g(x) }
+\end{align*}
+The right-side of equation~\eqref{eq:bound} is then dominated by $\sqrt{\mu} |\dsth(x)|$, and $\sum_{x=1}^{\infty}  \sqrt{\mu} |\dsth(x)| < \infty$ by $\dsth \in L_1$ (Lemma~\ref{lem:L1}). Next, we show that the summand $\sqrt{R_n} E \left ( \sqrt{\fnt} - \sqrt{g(x)} \right )^2 \xra{n \rightarrow \infty} 0 $. This is the case if $\sqrt{R_n} \left ( \sqrt{\fnt} - \sqrt{g(x)} \right )^2 \xra{p} 0$ and is uniformly integrable.
+
+From Lemma~\ref{lem:one}, $R_n^{1/4} \left ( \sqrt{\fnt} - \sqrt{g(x)} \right ) \xra{a.s.} 0$; so by continuity 
+\[
+\sqrt{R_n} \left ( \sqrt{\fnt} - \sqrt{g(x)} \right )^2 \xra{a.s.} 0
+\]
+as well.
+
+It is sufficient for the uniform integrability claim to show that
+\[
+\sup_n R_n^{\frac{1 + \varepsilon}{2}} E \bigg | \sqrt{\fnt} - \sqrt{g(x)} \bigg |^{2(1 + \varepsilon)} < \infty.
+\]
+Since the function $(\cdot)^{\frac{2}{1+\varepsilon}}$ is convex for sufficiently small $\varepsilon$, Jensen's inequality implies the left side of the previous line is bounded above by
+\begin{align*}
+\sup_n R_n^{\frac{1 + \varepsilon}{2}} E | \fnt - g(x) |^{1 + \epsilon} &\leq \sup_n n^{\frac{1 + \varepsilon}{2}} E^{\frac{1 + \varepsilon}{2}} ( \fnt - g(x) )^2 \\
+&\leq \sup_n R_n^{\frac{1 + \varepsilon}{2}} \left( \frac{\mu^2}{x^2} \gs \left (1-\gs \right ) \frac{1}{n} \right)^{\frac{1 + \varepsilon}{2}} \\
+&< \infty
+\end{align*}
+This completes the proof.
+\end{proof}
+\end{lem}
+
+
+
+\begin{lem}
+Suppose B1 and B2 hold. Then
+\[
+\nabla_2\hell(f_n,\fthnx) = \ddhell(g,\fthnx) + o_p(1)
+\]
+\label{lem:secondorder}
+\begin{proof}
+First, note that $\nabla_2\hell(f_n,\fth) = -4 \sum_x \sqrt{f_n(x)} \ddsth(x) = -4 (1 + o_p(1)) \sum_x \sqrt{\fnt} \ddsth(x)$, where the last equality holds by Lemma~\ref{lem:consistency}. Next,
+\begin{align*}
+4 \bigg | \sum_x \sqrt{\fnt} \ddsth(x) - \sqrt{g(x)} \ddsth(x)\bigg | &\leq  4   \sum_x \bigg | \sqrt{\fnt} - \sqrt{g(x)} \bigg| |\ddsth(x)| \\
+&\leq  4  \bigg| \bigg| \sqrt{\fnt} - \sqrt{g(x)} \bigg | \bigg |_2 ||\ddsth(x)||_2 \\
+&\leq  4  \sqrt{\sum_x |\fnt - g(x) |}   ||\ddsth(x)||_2 \\
+&\leq  4  \sqrt{ \mu \sum_x |d_n(x) - \gs |}   ||\ddsth(x)||_2, 
+\end{align*}
+where second line follows from the Cauchy-Schwarz inequality and the third from Equation~\eqref{eq:boundtwo}. But $\sum_x |d_n(x) - \gs | \xra{a.s.} 0$ by Lemma~\ref{lem:loneas} and $\ddsth \in L_2$ by Lemma~\ref{lem:l2}, implying the result.
+\end{proof}
+\end{lem}
+
+
+\begin{thm}[Asymptotic Normality of the Size-Biased MHDE on $\gs$]
+Let $X_1,...,X_{R_n} \sim \gs$ identically and independently. Also assume B1, B2, and B3 hold. Then
+\[
+\sqrt{R_n}(\mhde - \th) \xra{\mathcal{L}} N(0, \sigma^2)
+\]
+where
+\[
+\sigma^2 = \left( \ddhell(g,\fthnx) \right )^{-2} \fb{\mu \sum_{x=1}^{\infty} \left ( \frac{d}{d \th} \log \fth \right )^2 x^{-1} \fth}.
+\]
+If $g$ is in the model family $\fthnx$, then
+\[
+\sigma^2 = \left( I(\th)  \right)^{-2} \fb{\mu \sum_{x=1}^{\infty} \left (\frac{d}{d \th} \log \fth \right )^2 x^{-1} \fth},
+\]
+where $I(\th)$ is Fisher's Information with respect to $\th$ for $\fth$. See Remark~\ref{rem:asympvar} for explicit forms of $\sigma^2$ and for the special cases of shifted geometric and Poisson offspring distributions.
+\label{thm:anapp}
+\begin{proof}
+For all $n$, we have $0 = \dhell(f_n,f_{\mhde})$. Performing a Taylor expansion of $\mhde$ at $\th$, we obtain
+\begin{equation}
+\dhell(f_n,f_{\mhde}) = 0 = \dhell(f_n,f_\th) + \ddhell(f_n,f_{\th}) (\mhde - \th) + o(|\mhde - \th|) \label{eq:taylor}
+\end{equation}
+The error term is omitted from further expressions because if $E_n = o(|\mhde - \th|)$, then $E_n / |\mhde - \th| \rightarrow 0$ as $n \rightarrow \infty$. Then because $\sqrt{R_n}(\mhde - \th) = O_p(1)$, we have 
+\[
+\sqrt{R_n}E_n = \sqrt{R_n} (\mhde - \th)\frac{E_n}{\mhde - \th}  = O_p(1)o_p(1) = o_p(1);
+\]
+that is, the error term is $o(n^{-1/2})$.
+
+Rearranging Equation~\eqref{eq:taylor} gives
+\begin{align*}
+-\dhell(f_n,f_\th) &= \ddhell(f_n,f_{\th}) (\mhde - \th) \\
+\text{Lem.~\ref{lem:secondorder}} \Rightarrow -\dhell(f_n,f_\th) &= \left (\ddhell(g,f_{\th}) + o_p(1) \right) (\mhde - \th) \\
+\text{B3} \Rightarrow - \left (\ddhell(g,f_{\th}) + o_p(1) \right)^{-1} \dhell(f_n,f_\th) &=  (\mhde - \th) \\
+\text{Lem.~\ref{lem:two}} \Rightarrow (1 + o_p(1))\left (\ddhell(g,f_{\th}) + o_p(1) \right)^{-1} (\frac{1}{\sqrt{R_n}} \sum_{i=1}^n G_i + o_p(1)) &=  \sqrt{R_n}(\mhde - \th), \\
+\end{align*}
+where
+\[
+G_i = 2 \mu \dsth(X_i) \frac{1}{\sqrt{g(X_i)}} X_i^{-1}.
+\]
+Note the $G_i$ are i.i.d. since they are a function of the $X_i$. Then
+\[
+EG_1 \propto \sum_{x=1}^{\infty} \dsth(x)\sqrt{g(x)} = 0
+\]
+which equals zero by assumption. Furthermore,
+\begin{align*}
+Var(G_1) &= EG_1^2 \\
+&= 4 \mu^2 \sum_{x=1}^{\infty} (\dsth(x))^2 \frac{1}{g(x)}x^{-2}\gs  \\
+&= \mu \sum_{x=1}^{\infty} (\nabla \log \fth(x))^2 x^{-1} \fth   \\
+\end{align*}
+An application of the central limit theorem then gives
+\[
+\sqrt{R_n}(\mhde - \th) \xra{\mathcal{L}} N \left (0,  \left( \nabla_2\hell(g,\fthnx) \right )^{-2} \fb{\mu \sum_{x=1}^{\infty} (\nabla \log \fth)^2 x^{-1} \fth} \right)
+\]
+When $g$ is in the model family $\fth$, then 
+\[
+\ddhell(g,\fth) = I(\th),
+\]
+where $I(\th)$ is Fisher's Information for $\fthnx$.
+\end{proof}
+\end{thm}
+
+
+\begin{rem}
+\label{rem:asympvar}
+Theorem~\ref{thm:anapp} gives an explicit form of the asymptotic variance of the MHDE which can be simplified if the offspring distribution is in the model family $\fth$. First, consider the random variable $X \sim \frac{x \fth}{\mu}$. Let 
+\[
+\sigma_{1/X}^2 = E(X^{-1} - \mu^{-1})^2.
+\]
+It can be shown that $EX^{-1} = \mu^{-1}$. Then, some algebra yields
+\begin{align*}
+\sigma_{1/X}^2 &= \frac{1}{\mu^3} \sum_{x=1}^{\infty} (x - \mu)^2 \fth.
+\end{align*}
+An additional calculation from the form of $\sigma^2$ in Theorem~\ref{thm:anapp} yields
+\begin{align*}
+\sigma^2 &= I^{-2}(\th)  \th^{-2} \mu\sum_{x =1}^{\infty} \frac{1}{x} (x - \mu)^2 \fth \\
+&= I^{-2}(\th) \th^{-2} \mu^4 \sigma^2_{1/X} \\
+&=  \frac{\th^2}{\sigma_{\xi}^4} \mu^4 \sigma^2_{1/X} \\
+\end{align*}
+Here, the fact that $I_{\xi}(\th) = \frac{\sigma_{\xi}^2}{\th^2}$ is used. Recall $\mu = E\xi$.
+
+In the case of the shifted geometric offspring distribution given by $\fth = \th^{x-1}(1-\th)$ for $x = 1,2,...$, the expression for the asymptotic variance of the MHDE simplifies to
+\[
+\sigma^2 = -(1-\th)^2 \left ( \frac{\log (1 - \th)}{\th} + 1 \right ),
+\]
+which is the same as the asymptotic variance of the asymptotic method of moments estimator (AMM) studied in \cite{mm}.
+
+In the case of the shifted Poisson offspring distribution given by $\fth = \frac{\th^{x-1}}{(x-1)!}e^{-\th}$, the asymptotic variance is given by
+\[
+\sigma^2 = \frac{(\th + 1)^2}{\th} \fb{1 - (\th + 1)e^{-\th}}.
+\]
+This is also equal to the asymptotic variance of the asymptotic method of moments estimator (AMM) studied in \cite{mm}.
+\end{rem}
+
+
+\begin{thm}
+\label{thm:anYn}
+Assume the assumptions A2, B1, B2, and B3. Then,
+\[
+\sqrt{R_n}(\hat{\th}(\boldYnt) - \th) \xra{d} N(0, \sigma^2_{\th}),
+\]
+where $\sigma^2_{\th}$ is given in Theorem~\ref{thm:anapp}.
+\begin{proof}
+Assumptions B1, B2, and B3 give, by Theorem~\ref{thm:anapp}, that
+\[
+\sqrt{R_n}(\hat{\th}(\boldXnt) - \th) \xra{d} N(0, \sigma^2_{\th}).
+\]
+Let $V_n(\cdot) = \sqrt{R_n}(\hat{\th}(\cdot) - \th)$, $g$ be an arbitrary bounded continuous function (such that $|h(\cdot)| \leq M < \infty$, say), and $h_n(\cdot) = h(V_n(\cdot))$. Then the previous line can be restated as
+\[
+E(h_n(\boldXnt)) = E(h(V_n(\boldXnt))) \xra{n \rightarrow \infty} E(h(Z))
+\]
+if $Z \sim N(0,\sigma_{\th}^2)$, where $\sigma_{\th}^2$ is defined in Theorem~\ref{thm:anapp}. 
+
+The proof is done if the following statement is true:
+\[
+\left | E \fbr{ h(V_n(\boldYnt)) } - E \fbr{ h(V_n(\boldXnt)) } \right | \xra{n \rightarrow \infty} 0.
+\]
+We then have
+\begin{align*}
+\left | E \fbr{ h(V_n(\boldYnt)) } - E \fbr{ h(V_n(\boldXnt)) } \right | &= \left | E \fbr{ h_n(\boldYnt) } - E \fbr{ h_n(\boldXnt) } \right | \\
+&\leq \left | E \fbr{ h_n(\boldYnt)1(D_{n,T_n}) } - E \fbr{ h_n(\boldXnt) } \right | + M P(D_{n,T_n})
+\end{align*}
+It has already been established that $P(D_{n,T_n}) \xra{n \rightarrow \infty} 0$. The remaining term is such that
+\begin{align*}
+\left | E \fbr{ h_n(\boldYnt) 1(D_{n,T_n}) } - E \fbr{ h_n(\boldXnt) } \right | &\leq E \fbr{ \prod_{j=n}^{n+T_n} \prod_{k=1}^{r_j} \xi_{j-1}^{(k)} \left | {{Z_{j-1}}\choose{r_j}} / {{Z_j}\choose{r_j}} - \mu^{-R_n} \right | \left | h_n(\mbox{\boldmath $\xi_{n-1,T_n}$}) \right| } \\
+&\leq M E \fbr{ \prod_{j=n}^{n+T_n} \prod_{k=1}^{r_j} \xi_{j-1}^{(k)} \left | {{Z_{j-1}}\choose{r_j}} / {{Z_j}\choose{r_j}} - \mu^{-R_n} \right | } \\
+&\xra{n \rightarrow \infty} 0
+\end{align*}
+by Theorem~\ref{thm:an} and the fact that $h_n$ is uniformly bounded by $M$ in $n$ by construction. This proves the claim and gives the asymptotic normality of $\hat{\th}(\boldYnt)$
+
+\end{proof}
+\end{thm}
+
+
+
+% \begin{rem}[Estimate of the Asymptotic Variance $\sigma_{\theta}^2$] If the offspring distribution of the branching process is a member of the family $\fth$, then
+% \[
+% \sigma_{\theta}^2 = \left ( \frac{A''(\th)}{A(\th)} - \left (\frac{A'(\th)}{A(\th)} \right )^2 \right )^{-1},
+% \]
+% which is a continuous function of $\th$. Since $\hat{\th} \xra{p} \th$, $\sigma_{\hat{\th}}^2 \xra{p} \sigma_{\th}^2$, giving an asymptotic pivot which can be used to construct confidence intervals for $\th$.
+
+% \end{rem}
+
+ 
+
+%robustness command sequences
+% \newcommand{\gstar}{g^*_n}
+
+% Now we turn our attention to the robustness properties of the MHDE in this sampling scheme. A common method for examining the robustness of our estimator is to study the so-called contamination model given by
+% \[
+% \gstar (x) = (1 - \varepsilon) g(x) + \varepsilon k_n(x),
+% \]
+% where $\gstar, g,$ and $k_n$ are the offspring distribution, the true offspring distribution, and the contamination added to the offspring distribution, respectively. In this setup, the breakdown point is the the largest value of $\varepsilon$ for which there does not exist a sequence of distributions $\gstar$ such that
+% \begin{equation} \label{eq:robustseq}
+% | T(\gstar) - T(g) | \xra{n \rightarrow \infty } \infty.
+% \end{equation}
+% Here, $T(g)$ is the functional maximizing $\rho(f_{t},g)$ in $t$, where
+% \[
+% \rho(f,g) = \sum_{x=1}^{\infty} \sqrt{f(x)g(x)}.
+% \]
+% The analysis which follows finds an upper bound for $\varepsilon$ such that ~\eqref{eq:robustseq} does not hold for any $\gstar$.
+
+% \begin{thm}
+
+% \label{thm:robustness}
+% \begin{proof}
+% This proof follows Theorem 3 in \cite{simp}. 
+% \end{proof}
+% \end{thm}
+
+% \section{Bayesian Framework}
+
+% \newcommand{\hth}{\hat{\th}_{n}}
+% \newcommand{\thn}{\th_{0}}
+% \newcommand{\ithn}{I(\thn)}
+% \newcommand{\tha}{\hth + \frac{t}{\sqrt{R_n}}}
+% \newcommand{\thp}{\th_n'}
+
+
+
+% This section studies the properties of a Bayesian implementation of this work.
+
+% \begin{ass*}[C] Fisher's Information Assumptions. Let $l$
+% \begin{itemize} 
+% \item{(A1)} fill
+% \item{(A2)} fill
+% \end{itemize}
+% \end{ass*}
+
+
+\section{Appendix}
+
+\begin{fact} 
+\label{fact:dom}
+The power series model parameterized by $\th$ is dominated by $m$ the counting measure on $\mathbb{N}$.
+\begin{proof}
+Define $m(A) := \sum_{i \in \mathbb{N}} 1(i \in A)$. Then $0=m(A)=\sum_{i \in \mathbb{N}} 1(i \in A) \Rightarrow \forall i \quad i \not \in A \Rightarrow \mathbb{N} \cap A = \emptyset$. Next, $P_{\th} (A) = P_{\th} (A \cap \mathbb{N}) = P_{\th} (\emptyset) = 0$. So $P_{\th}$ is dominated by $m$.
+\end{proof}
+\end{fact}
+
+
+% \section{Bayesian Parametric Framework}
+
+% Regard all random variables denoted by $X$ with any subscript to follow $xg(x) / \mu$ identically and independently. Let $\thn$, the true value of the parameter, be an interior point of the parameter space.
+
+% \begin{defn}
+% Define the posterior distribution by
+% \[
+% P(\th | \boldXnt) = \frac{e^{L_n(\th)}\pi(\th)}{\int e^{L_n(\th)}\pi(\th) d \th}
+% \]
+% where $\pi$ is the prior distribution and $L_n(\th) = \sum_{j = 1}^{R_n}  \log f_{\th}(X_j)$.
+% \end{defn}
+
+% \begin{lem} Assume B1 holds. Let $l(\th,x)$ be the log likelihood of $\fth$. Regarding all derivatives with respect to $\th$, the following are true
+% \begin{enumerate}
+%   \item $l(\th,x)$ is thrice-differentiable with respect to $\th$ in a neighborhood $(\th_0 - \delta, \th_0 + \delta)$.
+%   \item $E_{\th_0} l'(\th_0,X)$ and $E_{\th_0} l''(\th_0,X)$ are finite.
+%   \item There exists $M(X)$ such that $E_{\th_0}M(X) < \infty$ and 
+% \[
+% \sup_{\th \in (\th_0 - \delta, \th_0 + \delta)} |l'''(\th,x)| \leq M(x)
+% \]
+%   \item $E_{\th_0} l'(\th,X) = 0$ and $E_{\th_0} l''(\th_0,X) = -E_{\th_0} (l'(\th_0,X))^2$. Also the Fischer information $I(\th_0) = -E_{\th_0} l''(\th_0,X) > 0$.
+% \end{enumerate}
+
+% \begin{proof}
+% First, it can be shown that
+% \begin{align*}
+% l(\th,x) &= \log a_x + x \log \th - \log A(\th), \\
+% l'(\th,x) &= \frac{x}{\th} - \frac{A'(\th)}{A(\th)}, \\
+% l''(\th,x) &= -\frac{x}{\th^2} - \frac{A''(\th)}{A(\th)} + \frac{(A'(\th))^2}{(A(\th))^2}, \\
+% l'''(\th,x) &= 2\frac{x}{\th^3} - \frac{A'''(\th)}{A(\th)} + 3\frac{A'(\th) A''(\th)}{(A(\th))^2} - 2\frac{(A'(\th))^3}{(A(\th))^3}.
+% \end{align*}
+% Since $A$ is infinitely differentiable in $\th$, 1 follows. Now 3 is shown. $A$ and its derivatives above exist are continuous in $\th$. Take any closed nonsingular interval containing $\th_0$, say $[\th_0 - \delta_0, \th_0 + \delta_0]$. Then by continuity, there exists a finite constant $M(\th_0,\delta_0)$ such that
+% \[
+% |l'''(\th,x)| \leq 2 \frac{x}{\th_0 - \delta_0} + M(\th_0,\delta_0) =: M(x)
+% \]
+% for all $\th \in [\th_0 - \delta_0, \th_0 + \delta_0]$. Now fix any open interval $\th_0 \pm \delta$ where $0 < \delta < \delta_1$. The following holds:
+% \[
+% \sup_{\th \in (\th_0 - \delta,\th_0 + \delta)} |l'''| \leq M(x),
+% \]
+% and $E_{\th_0} M(X) \leq \frac{2\mu}{\th^3} + M(\th_0,\delta_0) < \infty$ since $\mu$ is finite by Lemma~\ref{lem:moments}.
+
+% To show 3, note that the expectation gives
+% \[
+% E_{\th_0} l''(\th_0,X) = \frac{-\mu}{\th^2} - \frac{A''(\th_0)}{A(\th_0)} + \frac{(A'(\th_0))^2}{(A(\th_0))^2},
+% \]
+% which is finite. Similarly, $E_{\th_0}l'(\th_0,X)$ is finite.
+
+% To show 4, recall that $\mu = \frac{A'(\th)}{A(\th)}$ and compute
+% \begin{align*}
+% E_{\th_0}l'(\th_0,X) &= \frac{\mu}{\th_0} - \frac{A'(\th_0)}{A(\th_0)} \\
+% &= \frac{A'(\th_0)}{A(\th_0)} - \frac{A'(\th_0)}{A(\th_0)} \\
+% &= 0.
+% \end{align*}
+% To show $-E_{\th_0} (l'(\th_0,X))^2 = E_{\th_0} l''(\th_0,X)$, recall that the variance of a power series distribution is equal to $\frac{\th^2 A''(\th)}{A(\th)} + \frac{\th A'(\th)}{A(\th)} - \frac{\th^2 (A'(\th))^2}{(A(\th))^2}$ and then write,
+% \begin{align*}
+% -E_{\th_0} (l'(\th_0,X))^2 &= \frac{-1}{\th_0^2} E_{\th_0} (x - \mu)^2 \\
+% &= \frac{-1}{\th_0^2} V_{\th_0}(X) \\
+% &= -\frac{A''(\th)}{A(\th)} -\frac{ A'(\th)}{\th A(\th)} + \frac{ (A'(\th))^2}{A^2(\th)} \\
+% &= E_{\th_0} l''(\th_0,X)
+% \end{align*}
+% Finally, from the above we can write $I(\th_0) = \frac{1}{\th_0^2} V_{\th_0}(X) > 0$.
+% \end{proof}
+% \end{lem}
+
+% The following assumption is needed for the proof of asymptotic normality which comes later.
+% \begin{ass}
+% \label{ass:ep}
+% For all $\delta > 0$, there exists $\varepsilon > 0$ such that for $n$ sufficiently large,
+% \[
+% \sup_{|\th - \th_0| > \delta} R_n^{-1} \fp{ L_n(\th) - L_n(\thn) } < - \varepsilon
+% \]
+% holds with $P_{\thn}$-probability 1.
+% \end{ass}
+
+
+
+% \begin{thm}
+% Suppose $\hat{\th}_n$ is strongly consistent for $\th_0$ such that $L_n(\hat{\th}_n) = 0$ for $n$ sufficiently large. Then, for any prior density $\pi(\th)$ that is continuous and positive at $\th_0$,
+% \[
+% \lim_{n \rightarrow \infty} \int |\pi_n^*(t | \boldXnt) - \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}| dt = 0
+% \]
+% with $P_{\thn}$-probability one. $\pi_n^*$ is the posterior where $t = \sqrt{R_n}(\th - \hat{\th}_n)$
+
+% \begin{proof}
+% This result follows from Theorem 4.2 in [cite gosh].
+
+% From $\th = \tha$, a change of variables (the magnification constant of which depends only on $n$) and management of proportionality constants gives
+% \[
+% \pi_n^*(t | \boldXnt) = C_n^{-1} \pi(\tha) e^{L_n(\tha) - L_n(\hat{\th}_n)}
+% \]
+% where $C_n = \int \pi(\tha) e^{L_n(\tha) - L_n(\hth)} dt$. Then, let 
+% \[
+% g_n(t) = \pi(\tha)e^{L_n(\tha) - L_n(\hth)} - \pi(\thn)e^{\frac{-t^2}{2}\ithn}
+% \]
+% \begin{claim}
+% Assume $\int |g_n| dt \rightarrow 0$. This implies
+% \[
+% \lim_{n \rightarrow \infty} \int |\pi_n^*(t | \boldXnt) - \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}| dt = 0.
+% \]
+% \begin{proof}[Proof of Claim]
+% By hypothesis, we have that
+% \begin{align*}
+% \int \pi(\tha)e^{L_n(\tha) - L_n(\hth)} dt & \rightarrow \int \pi(\thn)e^{\frac{-t^2}{2}\ithn} dt  \\
+% &= \pi(\thn)\sqrt{\frac{2 \pi}{\ithn}} 
+% \end{align*}
+% But LHS $=C_n$, the normalization constant of the posterior, implying $C_n \rightarrow$ RHS $< \infty$.
+
+% Now, we dominate the inside of the primary claim
+% \[
+% \int |\pi_n^*(t | \boldXnt) - \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}| dt .
+% \]
+% We have
+% \begin{align*}
+% &|\pi_n^*(t | \boldXnt) - \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}|  \\
+% &\leq |C_n^{-1}g_n(t)| +  |C_n^{-1}\pi(\thn)e^{\frac{-t^2}{2}\ithn}|  + |\frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}|
+% \end{align*}
+% Recall that $C_n$ converges to a finite constant. Then integrate w.r.t. $t$: the RHS is integrable. Therefore, DCT can be used on the primary claim above.
+
+% Consider
+% \[
+% \lim_{n \rightarrow \infty} |\pi_n^*(t | \boldXnt) - \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}|.
+% \]
+% The right term does not depend on $n$. Expand the left term:
+% \[
+% \pi_n^*(t | \boldXnt) = C_n^{-1} \pi(\tha) e^{L_n(\tha) - L_n(\hth)}.
+% \]
+% Taking $n \rightarrow \infty$, we have 
+% \begin{itemize}
+%   \item $C_n^{-1} \rightarrow \sqrt{\frac{\ithn}{2 \pi}} \frac{1}{\pi(\thn)}$
+%   \item $\pi(\tha) \rightarrow \pi(\th_0)$. ($\pi$ cont at $\thn$ by assumption)
+%   \item $L_n(\tha) - L_n(\hth) \rightarrow$ ?: this question is answered next.
+% \end{itemize}
+
+% Use Taylor's Theorem, expanding at $\hth$ and recalling that $L_n'(\hth) = 0$ by assumption:
+% \begin{align*}
+% L_n(\tha) - L_n(\hth) = \frac{1}{2}L_n''(\thp)t^2
+% \end{align*}
+% where $\thp \in B_{t/\sqrt{R_n}}(\hth)$. By LLN and assumptions, we know
+% \[
+% \frac{1}{2}L_n''(\thp)\frac{t^2}{R_n} \rightarrow \frac{t^2}{2}\ithn . 
+% \]
+% So we then have,
+% \begin{align*}
+% \pi_n^*(t | \boldXnt) &= C_n^{-1} \pi(\tha) e^{L_n(\tha) - L_n(\hth)} \\
+% &\rightarrow  \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}
+% \end{align*}
+% implying
+% \[
+% \lim_{n \rightarrow \infty} |\pi_n^*(t | \boldXnt) - \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}|=0
+% \]
+
+% But we already dominated
+% \[
+% |\pi_n^*(t | \boldXnt) - \frac{\sqrt{\ithn}}{\sqrt{2 \pi}}e^{\frac{-t^2}{2}\ithn}|
+% \]
+% with an integrable upper bound. So we can pull out the limit and get the primary claim.
+% \end{proof}
+% \end{claim}
+
+% To finish the proof, we need to show that $\int |g_n(t)|dt \xra{n \rightarrow \infty} 0$. To prove this, we break the region of integration into two sets,
+% \[
+% A_1 = \{ t : |t| > \delta_0 \sqrt{R_n} \} \qquad \text{and} \qquad A_2 = \{ t : |t| \leq \delta_0 \sqrt{R_n} \},
+% \]
+% and show that 
+% \[
+% \int_{A_i} |g_n(t)| dt \rightarrow 0
+% \] 
+% on each. For $A_1$, first note that by Assumption~\ref{ass:ep}, we know that 
+% \[
+% L_n(\tha) - L_n(\hth) = L_n(\tha) - L_n(\thn) + L_n(\thn) - L_n(\hth) \leq -R_n\varepsilon + 0
+% \]
+% for $n$ sufficiently large. Then
+% \[
+% \int_{A_1}|g_n(t)|dt \leq \sqrt{R_n}2e^{- R_n \ep} \int_{A_1} \pi(\th) d \th + \pi(\thn) \int_{A_1} e^{\frac{-t^2}{2}\ithn} dt \rightarrow 0\\
+% \]
+% as $n \rightarrow \infty$. The proof of $A_2$ is more involved. By assumption, rewrite $A_2 = \{\th : |\th - \hth| < \delta_0\}$, and refer to the expansion of $L_n(\tha) - L_n(\hth)$:
+% \begin{align*}
+% 1_{A_2}|g_n(t)|& \leq 1_{A_2}\left( \pi(\tha) e^{\frac{L''_n(\hth)}{2 R_n}t^2 + \frac{L'''_n(\hth)}{6R_n}\frac{t^3}{\sqrt{R_n}}} + \pi(\thn)e^{\frac{-t^2}{2}\ithn} \right)\\
+% & \leq 1_{A_2}\left( \pi(\tha) e^{\frac{-I(\thn)}{4}t^2 + \frac{6EB(X))}{(6)(5)}\delta_0 t^2} + \pi(\thn)e^{\frac{-t^2}{2}\ithn} \right)\\
+% & \leq 1_{A_2}\left( \pi(\tha) e^{\frac{-I(\thn)}{4}t^2 + \frac{\ithn}{5}\delta_0^* t^2} + \pi(\thn)e^{\frac{-t^2}{2}\ithn} \right)\\
+% & \leq 1_{A_2}\left( \pi(\tha) e^{\frac{-I(\thn)}{4}t^2 + \frac{\ithn}{5}\delta_0^* t^2} + \pi(\thn)e^{\frac{-t^2}{2}\ithn} \right)\\
+% & \leq 1_{A_2}\left( (\pi(\th_0 ) +\ep) e^{\frac{-I(\thn)}{4}t^2 + \frac{\ithn}{5}\delta_0^* t^2} + \pi(\thn)e^{\frac{-t^2}{2}\ithn} \right)\\
+% \end{align*}
+% which is integrable for $n$.s.l. Then use DCT and $g_n(t) \rightarrow 0$ from before, completing the proof.
+% \end{proof}
+% \end{thm}
+
+
+%Bibliography
+%----------------------------------------
+\bibliographystyle{plain}
+\bibliography{biblio}{}
+%----------------------------------------
+
+
+\end{document}

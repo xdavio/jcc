@@ -1,0 +1,210 @@
+\documentclass[11 pt]{article}
+\usepackage{amssymb,amsmath, amsthm, graphics, subfig, listings, graphicx, framed}
+%\usepackage{natbib}
+%formatting that is good for editing (it double spaces)
+\renewcommand{\baselinestretch}{1.4}
+\textwidth 6in \textheight 9in \hoffset -0.30in \topmargin -0.45in
+\interfootnotelinepenalty=10000 %keeps footnotes on a single page
+
+%comment out
+%----------------------
+\newcommand{\commentout}[1]{}
+%--------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%PART I. GENERAL COMMANDS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I. NUMBERING AND ENVIRONMENTS FOR THEOREMS, PROPOSITIONS, LEMMAS, AND EQUATIONS
+
+%A. Actual Theorems
+\newtheorem{ass}{Assumption}
+\newtheorem{prop}{Proposition}
+\newtheorem{fact}{Fact}
+\newtheorem{lem}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{con}{Conjecture}
+\newtheorem{defn}{Definition} %use \textbf{} to set it off
+\newtheorem{rem}{Remark}
+\newtheorem{rec}{Recall}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem{note}{Note}
+\newtheorem{question}{Question}
+\newtheorem{ques}{\textcolor{red}{Question}}
+\newtheorem{com}{\textcolor{red}{Comment}}
+\newtheorem{todo}{\textcolor{red}{To Do}}
+
+%B. Special Referencing
+
+%B1. Built in ones
+
+%1. \eqref (equations, in standard package)
+ %%2. in commath:
+%a)\thmref
+%b)\exref (example)
+%c) \defnref
+%d) \lemref
+%e)\propref
+%f)\remref
+%g)\assref
+%h)\colref - corollary
+%also figures, section, appendix
+
+%B2. I try to define
+%1. fact KEY need dollar signs for it work $\factref{fact:varW}$
+\newcommand{\factref}[1]{ \text{Fact~\ref{#1}} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Bold Greek
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\bbeta{\mbox{\boldmath $\beta$}}
+\def\bmu{\mbox{\boldmath $\mu$}}
+\def\etab{\mbox{\boldmath $\eta$}}
+\def\balpha{\mbox{\boldmath $\alpha$}}
+\def\btau{\mbox{\boldmath $\tau$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\bGamma{\mbox{\boldmath $\Gamma$}}
+\def\bgamma{\mbox{\boldmath $\gamma$}}
+\def\bOmega{\mbox{\boldmath $\Omega$}}
+\def\bPsi{\mbox{\boldmath $U$}}
+\def\bpsi{\mbox{\boldmath $\mu$}}
+\def\bXi{\mbox{\boldmath $\Xi$}}
+\def\bxi{\mbox{\boldmath $\xi$}}
+\def\bSigma{\mbox{\boldmath $\Sigma$}}
+\def\bLambda{\mbox{\boldmath $\Lambda$}}
+\def\btheta{\mbox{\boldmath $\theta$}}
+\def\bDelta{\mbox{\boldmath $\Delta$}}
+\def\bTheta{\mbox{\boldmath $\Theta$}}
+\def\etaz{\mbox{\boldmath $\eta$}}
+
+\def\boldX{\mbox{\boldmath $X$}}
+\def\boldx{\mbox{\boldmath $X$}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% III. SHORTCUTS
+
+%A. Greek symbols
+\newcommand{\be}{\begin{eqnarray*}}
+\newcommand{\ee}{\end{eqnarray*}}
+\newcommand{\ff}{\infty}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\ep}{\epsilon}
+\newcommand{\ga}{\gamma}
+\newcommand{\al}{\alpha}
+\newcommand{\la}{\lambda}
+\newcommand{\si}{\sigma}
+\renewcommand{\th}{\theta}
+\newcommand{\Epos}{E_{\theta|\boldX}}
+\newcommand{\Ej}{E_{\theta,\boldX}}
+%B. Other Math Symbols
+
+%1. transpose, you want a consistent use, bc you could use t,T or \prime
+\def\tran{\mathop{ t }}
+
+%C. Commands
+\newcommand{\xra}[1]{\mathop{ \xrightarrow{#1} }}
+
+%D. Fences puts items in the correct fence sizes (parantheses, brackets, etc..)
+% (get rid of? look at commath package?)
+%fp = fence parentheses
+\newcommand{\fp}[1]{ \mathop{ \left( #1 \right) } }
+%fb = fence brackets
+\newcommand{\fb}[1]{ \mathop{ \left[ #1 \right] } }
+%fbr = fence braces meaning \{
+\newcommand{\fbr}[1]{ \mathop{ \left\{ #1 \right\} } }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%V. Other Commands
+
+ %command that is called by \Title{Text} and this centers it.
+\newcommand{\Title}[1]{\begin{center}{\Large \bf #1} \end{center}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%END PART I
+\newcommand{\xb}{\bar{x}}
+\newcommand{\Xb}{\bar{X}}
+\newcommand{\sn}{s / \sqrt{n}}
+\newcommand{\Sn}{S / \sqrt{n}}
+\newcommand{\ho}{\mathcal{H}_0}
+\newcommand{\hono}{\mathcal{H}_0}
+\newcommand{\mun}{\mu_0}
+\newcommand{\ha}{\mathcal{H}_A}
+\newcommand{\zc}{z_{\alpha}}
+\newcommand{\zctwo}{z_{\alpha/2}}
+\newcommand{\tc}{t_{n-1,\alpha}}
+\newcommand{\tctwo}{t_{n-1,\alpha/2}}
+
+
+\begin{document}
+\Title{Summary Recap of Lec 14 3/03}
+\Title{John Davis}
+
+
+\section*{Pvalue Calculatios based on the form of $\ha$}
+
+Here, I provide three forms of the alternative hypothesis, the corresponding rejection region, and the corresponding pvalue calculation. Note that in the following $z$ is the observed value of the test statistic. 
+
+\begin{enumerate}
+  \item $\ha: \mu < \mun$: In this case, the critical value is $\zc$, and the rejection region is
+\[
+z < -\zc.
+\]
+\begin{framed}
+The pvalue calculation is $P(Z < z)$.
+\end{framed}
+
+  \item $\ha: \mu \neq \mun$: In this case, the critical value is $\zctwo$, and the rejection region is
+\[
+z > \zctwo \qquad \text{or} \qquad z < - \zctwo
+\]
+\begin{framed}
+The pvalue calculation is $P(Z < -|z|) + P(Z > |z|)$.
+\end{framed}
+
+  \item $\ha: \mu > \mun$: In this case, the critical value is $\zc$, and the rejection region is
+\[
+z > \zc
+\]
+\begin{framed}
+The pvalue calculation is $P(Z > z)$.
+\end{framed}
+\end{enumerate}
+
+I recommend drawing pictures of areas under the standard normal curve to match up with the pvalue calculations. The pvalue calculations for the $t$-test are analagous. 
+
+\section*{Power Calculation}
+
+Suppose that $\sigma$ is known, the data are normal, $\ho: \mu = \mun$, $\ha: \mu > \mun$, and we know $\mu = \mu_A$. We can then calculate the power.
+\[
+power = P \left ( Z > z_{\alpha} + \frac{\mun - \mu_A}{\sigma / \sqrt{n}} \right ) 
+\]
+Alternatively, if $\ha: \mu < \mun$
+\[
+power = P \left ( Z < -z_{\alpha} + \frac{\mun - \mu_A}{\sigma / \sqrt{n}} \right ) 
+\]
+For the purposes of this course, we'll ignore the case where $\ha: \mu \neq \mun$
+
+
+\section*{Sample Size Calculation for Power}
+Let $\ho: \mu = \mun$ and $\ha : \mu \neq \mun$. Suppose we know that $\mu = \mu_A$. Then for normal data with known $\sigma$, we can find the sample size to guarantee power = $1 - \beta$:
+\begin{framed}
+\[
+n = \left ( \frac{\sigma (z_{\beta} + z_{\alpha / 2})}{\mun - \mu_A} \right ) ^2
+\]
+\end{framed}
+Remember to round $n$ up to the nearest whole integer. If the form of $\ha$ is $<$ or $>$, then use $\alpha$ instead of $\alpha / 2$ in the formula.
+
+\section*{Estimating the pvalue of the $t$-test using the $t$-table}
+
+We did an extensive example in class about how to do this kind of calculation. Next week, in discussion, a similar calculation will occur.  
+
+
+\end{document}

@@ -1,0 +1,339 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+\usetheme{default}
+\title[STAT 371]{Introduction to Statistics for the Life Sciences}
+\date{Spring 2016}
+\begin{document}
+
+\section{Introduction}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Topics} 
+\tableofcontents
+\end{frame}
+
+\begin{frame}{Another Definition}
+\begin{quote}
+``Statistics is the science of understanding data and of making decisions in the face of variability and uncertainty."
+\end{quote}
+--Statistics for the Life Sciences, page 1.
+\end{frame}
+
+
+\begin{frame}{Example 1.1.1}
+24 sheep were vaccinated and 24 were not. All were exposed to Anthrax. 
+\input{ex1.tex}
+\pause
+The vaccine apparently works. What if there were only 2 sheep in each group?
+\end{frame}
+
+\begin{frame}{Example 1.1.2}
+The relationship between a controlled bacterial infection and liver tumor incidence was studied in a certain species of mice. 
+\input{ex2.tex}
+\end{frame}
+
+\section{Variability}
+\begin{frame}{Variability}
+What is variability?
+\pause
+\begin{itemize}
+  \item Heart Rate (bbm)
+  \pause
+  \item Heart Rate in response to caffeine
+\end{itemize}
+Loosely speaking, similar things still exhibit differences.
+\end{frame}
+
+\begin{frame}{Wikipedia's Definition}
+\begin{block}{Definition}Variability is how spread out or closely clustered a set of data is.\end{block}
+
+Variability may refer to:
+\begin{itemize}
+  \item  Climate variability
+  \item  Genetic variability
+  \item  Heart rate variability
+  \item  Human variability
+  \item  Spatial variability
+  \item  \textbf{Statistical variability, a measure of dispersion in statistics}
+  \item  Variability hypothesis, nineteenth century hypothesis that males have a greater range of ability than females (???)
+\end{itemize}
+\end{frame}
+
+\subsubsection{Signal Versus Noise}
+
+\begin{frame}{Example 1.1.2}
+Recall the tumor/bacteria/mice example:
+\input{ex2.tex}
+How can we separate presumably random tumor incidence from the effect of the introduced bacteria?
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+  \item Want: know if presence of bacteria increases tumor incidence
+  \item 27 total tumors
+  \item Group sizes are 13 and 49 (E.coli and not, respectively)
+  \item \textbf{Assume bacteria doesn't affect tumor incidence}
+  \item Then, how plausible are the tumor incidence proportions .62, .39?
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Assess Plausibility}
+\begin{itemize}
+  \item Randomly assign the 27 tumors to two groups of size 13, 49.
+  \item Repeat this $10^5$ times.
+  \item How does the tumor incidence of the bacteria group look?
+\pause
+  \item 3.8\% of the time, the prop. of tumors in the bacteria group is .62 or more.
+  \item Most fundamental point in this course
+  \item The signal seems to win out over the noise.
+\pause
+  \item What if the 3.8\% were 15.2\%?
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+  \includegraphics[width=.8\textwidth]{ex3.pdf}
+\end{frame}
+
+
+%\section{Design of Experiments}
+
+\section{Evidence}
+
+\subsection{Anecdote}
+
+\begin{frame}{Example 1.2.1}
+\begin{itemize}
+  \item In 1911 a 65-year-old woman who had been deaf since birth was struck by lightning.  She survived, and her deafness was cured!
+  \item An NYT headline surfaced: ``Lightning Cures Deafness."
+  \item This is called \textbf{anecdotal evidence}.
+\end{itemize}
+\pause
+\begin{block}{Anecdotal Evidence:} An interesting event that may help scientists generate hypotheses but in and of itself does not establish scientific theory.
+\end{block}
+
+\end{frame}
+
+\subsection{Observational Study}
+
+\begin{frame}{Definition}
+
+\begin{itemize}
+  \begin{block}{Observational Study:} A study in which the researcher collects data from subjects but is not manipulating the conditions that lead to the measurement of interest.\end{block}
+  \item Example 1.2.2: 30 homosexual men, heterosexual men, and heterosexual women had the area of their AC measured.
+  \input{ex4.tex}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Confounding Variables}
+
+\begin{itemize}
+  \item However, 24 of the 30 homosexual men had AIDS (as did 6 of the heterosexual men, and none of the heterosexual women).
+  \item This is a problem. Why?
+\pause
+  \item What if AIDS has a connection with the size of the AC?
+\end{itemize}
+
+\begin{block}{Confounding Variable:} A variable that varies with both the independent and dependent variable, making the relationship between the two apparent but not actually valid.\end{block}
+
+\end{frame}
+
+\begin{frame}{Weird Confounds 1}
+\begin{itemize}
+  \item A study supported the claim that people who married later in life were less likely to develop cognitive impairment. 
+  \item Confounding Variable?
+\end{itemize}
+\end{frame}
+
+% \begin{frame}{Weird Confounds 2: Example 1.2.8}
+% \begin{itemize}
+%   \item A study was conducted giving medication that attempted to lower cholesterol.
+%   \item Many of the subjects took less than the prescribed amount of medication
+% \end{itemize}
+
+% 5-year mortality rates:
+% \begin{center}
+% \begin{tabular}{lll}
+% Adherence & Treatment & Placebo \\
+% $\geq 80$\% & 15\% & 15.1\% \\
+% $< 80$\% & 24.6\% & 28.2\% \\
+% \end{tabular}
+% \end{center}
+
+% \pause
+% The subjects were divided into adherence groups after the experiment.
+
+% \end{frame}
+
+
+
+% \subsection{Experiment}
+
+% \begin{frame}{Definition}
+
+% \begin{block}{Experiment:} A study in which the researcher imposes the conditions that lead to the measurement of interest, controlling for sources of variability.\end{block}
+
+% \begin{itemize}
+%   \item Better suited for relating independent variables with dependent variables
+%   \item Better suited for establishing causality
+%   \item Allows elimination of confounding variables
+% \end{itemize}
+% \end{frame}
+
+% \section{Issues with Experiments}
+
+% \subsection{Placebo}
+
+% \begin{frame}
+% \begin{itemize}
+%   \item Sugar pills, for $\sim 30$\% of people, are effective as painkillers. 
+%   \item The patient must believe it is the treatment.
+%   \item Placebo / Nocebo: I shall please / I shall harm. 
+% \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Famous Case}
+% \begin{itemize}
+%   \item 1950s: angina pectoris treated by surgical ligation of mammary artery to increase blood flow to heart
+%   \item Medical community and patients heartily approved
+%   \item Later, animal studies cast doubts
+%   \item Human experiment with sham operation $\Rightarrow$ No difference in improvement
+%   \item Mammary Artery Ligation no longer used
+%   \pause
+%   \item Ethical issues?
+% \end{itemize}
+% \end{frame}
+
+
+% \subsection{Blinding}
+
+% \begin{frame}
+%   \begin{block}{Blinding:} A blind experiment is one in which the experimental subjects are not privy to the their treatment assignment. \end{block}
+% \begin{itemize}
+%   \item Minimize patient expectations from playing a role in the results
+%   \item Thought experiment: Imagine a physician believes taking a certain supplement accelerates bone fracture repair.
+%   \item $\Rightarrow$ Can we trust this physician's interpretation of the X-ray?
+% \pause
+%   \item How to remedy this problem? Double-blind experiments.
+% \end{itemize}
+% \end{frame}
+
+% \subsection{Double-Blinding}
+
+% \begin{frame}{Definition}
+% \begin{block}{Double-Blind Experiment:} An experiment in which both the persons making evaluations and the subjects are not privy to the treatment assignment. \end{block}
+
+% \vspace{20mm}
+
+% Recall the Mammary Ligation example -- it was double-blinded.
+% \end{frame}
+
+%historical controls?
+
+
+%\section{SRS}
+
+\section{Population Versus Sample}
+
+\begin{frame}{Population}
+\begin{block}{Population:} The population consists of all the subjects/specimens of interest.\end{block}
+
+Examples:
+\begin{itemize}
+  \item The fish in a pond
+  \item People with autism under the age of 5
+  \item Tap water in US cities
+\end{itemize}
+
+\pause 
+
+However, we can rarely get our hands on the entire population.
+\end{frame}
+
+\begin{frame}{Sample}
+\begin{block}{Sample:} The sample is a subset of the population with sample size $n$.\end{block}
+
+
+Examples:
+\begin{itemize}
+  \item $n=5$ fish in the pond
+  \item $n=12$ people with autism under the age of 5
+  \item $n=3000$ vials of tap water from US cities
+\end{itemize}
+
+\pause
+
+By nature, a sample paints an incomplete picture of the population. 
+\end{frame}
+
+% \begin{frame}
+% Consider a simple example. You catch $n=100$ fish of a particular species from the ocean and weigh them. The average weight is 1.2 kg. 
+
+% \vspace{10mm}
+
+% If we weighed all such fish, would the resulting average be 1.2 kg?
+
+% \vspace{10mm}
+
+% \begin{block}{Sampling Error:} The discrepancy between the sample and population is called the sampling error. \end{block}
+
+% \end{frame}
+
+% \begin{frame}{Definition of Simple Random Sampling}
+
+% \begin{block}{Simple Random Sample (SRS):}  A sample of size $n$ from a population such that (a) all subjects/specimens in the population have the same chance of being in the sample and (b) the members of the sample are chosen independently of each other. \end{block}
+
+% \begin{alertblock}{Example}
+% Suppose a population of 100 dogs on which SRS with $n=10$ is to be performed. Write the (unique) name of every dog on a piece of paper, put the pieces in a jar, stir, draw 10. 
+% \end{alertblock}
+
+% \end{frame}
+
+% \begin{frame}{SRS: In Real Life}
+% \begin{alertblock}{Example}
+% Suppose a population of 100 dogs on which SRS with $n=10$ is to be performed. Give each dog a unique numerical ID. Use a computer to randomly generate numbers that correspond to these IDs until 10 have been generated. 
+% \end{alertblock}
+
+% Note: Humans can't be trusted as random number generators.
+
+% \end{frame}
+
+% \subsection{Bias}
+
+% \begin{frame}
+% Volunteer
+% \end{frame}
+
+
+% \begin{frame}{Definition}
+% \begin{block}{Bias}
+% A biased sample systematically overestimates or underestimates a characteristic of the population
+% \end{block}
+% \begin{itemize}
+%   \item Paid subjects for drug testing
+%   \item Brood size sampling
+%   \item Other ideas?
+% \end{itemize}
+% \end{frame}
+
+
+
+
+\end{document}
